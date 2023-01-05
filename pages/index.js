@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -7,22 +8,73 @@ import NFTCollection from "../engine/NFTCollection.json";
 import Resell from "../engine/Resell.json";
 import Market from "../engine/Market.json";
 import NFT from "../engine/NFT.json";
-import { Grid, Card, Text, Button, Row, Spacer, Container, Loading } from "@nextui-org/react";
-import { hhnft, hhmarket, hhresell, hhnftcol, hhrpc } from "../engine/configuration";
-import { goenft, goemarket, goeresell, goenftcol, goerpc } from "../engine/configuration";
-import { bsctnft, bsctmarket, bsctresell, bsctnftcol, bsctrpc } from "../engine/configuration";
-import { mmnft, mmmarket, mmresell, mmnftcol, mmrpc } from "../engine/configuration";
-import { flrnft, flrmarket, flrresell, flrnftcol, flrrpc } from "../engine/configuration";
-import { ethnft, ethmarket, ethresell, ethnftcol, ethrpc } from "../engine/configuration";
-import { bnbnft, bnbmarket, bnbresell, bnbnftcol, bnbrpc } from "../engine/configuration";
-import { polynft, polymarket, polyresell, polynftcol, polyrpc, } from "../engine/configuration";
+import { Grid, Card, Text, Button, Row, Spacer, Container, Loading, } from "@nextui-org/react";
+import { hhnft, hhmarket, hhresell, hhnftcol, hhrpc,} from "../engine/configuration";
+import {
+  goenft,
+  goemarket,
+  goeresell,
+  goenftcol,
+  goerpc,
+} from "../engine/configuration";
+import {
+  bsctnft,
+  bsctmarket,
+  bsctresell,
+  bsctnftcol,
+  bsctrpc,
+} from "../engine/configuration";
+import {
+  mmnft,
+  mmmarket,
+  mmresell,
+  mmnftcol,
+  mmrpc,
+} from "../engine/configuration";
+import {
+  flrnft,
+  flrmarket,
+  flrresell,
+  flrnftcol,
+  flrrpc,
+} from "../engine/configuration";
+import {
+  ethnft,
+  ethmarket,
+  ethresell,
+  ethnftcol,
+  ethrpc,
+} from "../engine/configuration";
+import {
+  bnbnft,
+  bnbmarket,
+  bnbresell,
+  bnbnftcol,
+  bnbrpc,
+} from "../engine/configuration";
+import {
+  polynft,
+  polymarket,
+  polyresell,
+  polynftcol,
+  polyrpc,
+} from "../engine/configuration";
 import { simpleCrypto } from "../engine/configuration";
 import confetti from "canvas-confetti";
 import "sf-font";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import detectEthereumProvider from "@metamask/detect-provider";
-import { bscTest, ethTest, hardChain, polyTest, flrChain, ethChain, bscChain, polyChain  } from "../engine/chainchange";
+import {
+  bscTest,
+  ethTest,
+  hardChain,
+  polyTest,
+  flrChain,
+  ethChain,
+  bscChain,
+  polyChain,
+} from "../engine/chainchange";
 import Web3 from "web3";
 import LoadingPopup from "../components/LoadingPopup";
 import BuyCard from "../components/BuyCard";
@@ -48,6 +100,77 @@ export default function Home() {
   const [activeChain, setActiveChain] = useState(null);
   const [visible, setVisible] = useState(false);
   const [allNfts, setAllNfts] = useState(null);
+
+  const [ethereumNftShow, setEthereumNftShow] = useState(true);
+  const [binanceNftShow, setBinanceNftShow] = useState(false);
+  const [polygonNftShow, setPolygonNftShow] = useState(false);
+  const [flareNftShow, setFlareNftShow] = useState(false);
+  const [songbirdNftShow, setSongbirdNftShow] = useState(false);
+
+  const sliderImgArray = [
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeifn75ro5yuqd7d2u5ea3x62nuj2pbuz3et4zj67wy2uueaop7vpiu/MonsterDaddy_Pixar_Style_cute_and_adorable_monster_explorer_adv_55ab1f8b-de12-417a-b7f5-74995a7c8b69.png",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeihpmfqc23rwkot5lixfpmfdif5sm5zscakcky7qeooto7vkds3osi/143341_disney_Pixar_Style_cute_and_adorable_neon_purple_and_yel_858afdda-50b9-48ff-9d45-d54e738ec8ef.png",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeiggot5tv2jioyrrehxchcxaojw4fj4jjtj6b3u74elt2r5su7nabu/trippy-illusion.gif",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeigbztwqltqkmdi2stk5wbuogvpiyqkmjnij3au5qtf7rcy2hmnaku/143341_disney_Pixar_Style_cute_and_adorable_monster_dressed_lik_49d156e1-edbb-4bf4-854d-d7500a9e218a.png",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeiap2yjyxtvanby4rl4mw37z67csms56cv7gnszi4fhf4t2nxpxpxy/bob-ross-painting.gif",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeih4o7ddraxii65jvwlwt72zzjflyutvtqv4rdyb34l3r35ny2vbzy/143341_disney_Pixar_Style_cute_and_adorable_neon_rainbow_monste_3b66ecb2-1b0e-47f9-a093-1c0c25c1e034.png",
+    },
+    {
+      thumb:
+        "https://ipfs.io/ipfs/bafybeibpaysdjnh4rthibyltiqytjrpr23jpr6zbglirvq2yaqb22dkhri/MonsterDaddy_Pixar_Style_Tiny_cute_and_adorable_colorful_detail_e1a72901-bb51-4f05-b911-4471616f0a60.png",
+    },
+  ];
+
+  const networkSelect = (e) => {
+    if (e === "Ethereum") {
+      setEthereumNftShow(true);
+      setBinanceNftShow(false);
+      setPolygonNftShow(false);
+      setFlareNftShow(false);
+      setSongbirdNftShow(false);
+    } else if (e === "Binance") {
+      setEthereumNftShow(false);
+      setBinanceNftShow(true);
+      setPolygonNftShow(false);
+      setFlareNftShow(false);
+      setSongbirdNftShow(false);
+    } else if (e === "Polygon") {
+      setEthereumNftShow(false);
+      setBinanceNftShow(false);
+      setPolygonNftShow(true);
+      setFlareNftShow(false);
+      setSongbirdNftShow(false);
+    } else if (e === "Flare") {
+      setEthereumNftShow(false);
+      setBinanceNftShow(false);
+      setPolygonNftShow(false);
+      setFlareNftShow(true);
+      setSongbirdNftShow(false);
+    } else if (e === "Songbird") {
+      setEthereumNftShow(false);
+      setBinanceNftShow(false);
+      setPolygonNftShow(false);
+      setFlareNftShow(false);
+      setSongbirdNftShow(true);
+    }
+  };
 
   useEffect(() => {
     loadHardHatResell();
@@ -778,9 +901,7 @@ export default function Home() {
     setVisible(false);
   }
 
-   /*Flare Networks functions*/
-
-
+  /*Flare Networks functions*/
 
   async function loadFlareResell() {
     const provider = new ethers.providers.JsonRpcProvider(flrrpc);
@@ -1408,8 +1529,6 @@ export default function Home() {
     setVisible(false);
   }
 
-
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -1439,22 +1558,29 @@ export default function Home() {
     console.log("polynfts======", polynfts);
     console.log("bnbnfts======", bnbnfts);
     console.log("allNfts======", allNfts);
-  }, [goenfts, flrnfts, mmnfts, ethnfts, bnbnfts, polynfts, bsctnfts, hhlist, allNfts, hhnfts]);
+  }, [
+    goenfts,
+    flrnfts,
+    mmnfts,
+    ethnfts,
+    bnbnfts,
+    polynfts,
+    bsctnfts,
+    hhlist,
+    allNfts,
+    hhnfts,
+  ]);
 
   return (
-
-    
-    <><div>
-      {allNfts && (
+    <>
+      <div>
         <div>
-          
           <Container
             xl
             css={{
               backgroundImage: "url(./8e145599d4847e339828787162952035.gif)",
               backgroundSize: "cover",
-            }}
-          >
+            }}>
             <Container
               xs
               css={{
@@ -1471,8 +1597,7 @@ export default function Home() {
                   },
                   "& .custom-dot-list-style": { bottom: "-9px" },
                 },
-              }}
-            >
+              }}>
               <Text
                 css={{
                   textAlign: "center",
@@ -1481,868 +1606,1033 @@ export default function Home() {
                   animation: "spin 2s linear infinite",
                   backgroundSize: "cover",
                 }}
-                h2
-              >
+                h2>
                 🔥 Top NFT's 🔥
               </Text>
-              <div style={{ textAlign: "center" }}>
-              <audio controls style={{ color: "blue"  }}>
-  <source src="./ytmp3free.cc_30-seconds-of-intro-songs-dubstep-stronger-2012-1-youtubemp3free.org (1).mp3" type="audio/mpeg" />
-  <source src="./ytmp3free.cc_30-seconds-of-intro-songs-dubstep-stronger-2012-1-youtubemp3free.org (1).mp3" type="audio/ogg" />
-  Your browser does not support the audio element.
-</audio>
-
-
+              <div style={{ textAlign: "center", minHeight: "100px" }}>
+                <audio controls style={{ color: "blue" }}>
+                  <source
+                    src="./ytmp3free.cc_30-seconds-of-intro-songs-dubstep-stronger-2012-1-youtubemp3free.org (1).mp3"
+                    type="audio/mpeg"
+                  />
+                  <source
+                    src="./ytmp3free.cc_30-seconds-of-intro-songs-dubstep-stronger-2012-1-youtubemp3free.org (1).mp3"
+                    type="audio/ogg"
+                  />
+                  Your browser does not support the audio element.
+                </audio>
               </div>
-              <Carousel
-                swipeable={true}
-                draggable={true}
-                showDots={true}
-                responsive={responsive}
-                ssr={true}
-                infinite={true}
-                autoPlay={true}
-                autoPlaySpeed={10000}
-                keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={800}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-100-px"
-                itemAriaLabel="abcd"
-                className="SliderWrapper"
-              >
-                {allNfts.map((nft, i) => (
-                  <div key={i}>
-                    <Card.Image
-                      css={{
-                        maxWidth: "650px",
-                      }}
-                      src={nft.image} />
-                  </div>
-                ))}
-              </Carousel>
+              {sliderImgArray && (
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  showDots={true}
+                  responsive={responsive}
+                  ssr={true}
+                  infinite={true}
+                  autoPlay={true}
+                  autoPlaySpeed={2000}
+                  keyBoardControl={true}
+                  customTransition="all 1.5"
+                  transitionDuration={1000}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  itemClass="carousel-item-padding-100-px"
+                  itemAriaLabel="abcd"
+                  className="SliderWrapper">
+                  {sliderImgArray.map((nft, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        Width: "350px",
+                        maxHeight: "350px",
+                        borderRadius: "10%",
+                        objectPosition: "cover",
+                      }}>
+                      <Card.Image
+                        css={{
+                          maxWidth: "350px",
+                          maxHeight: "350px",
+                          borderRadius: "10%",
+                          objectPosition: "cover",
+                          paddingBottom: "5%",
+                        }}
+                        src={nft.thumb}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+              )}
             </Container>
           </Container>
         </div>
-      )}
-    </div><><Container sm>
-      <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-        <Text css={{ mr: "15px" }} h3>
-          Latest Relisted NFTs on{" "}
-        </Text>
-        <img
-          src="flarelogo.png"
-          style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-      </Row>
-      <Grid.Container gap={1} justify="flex-start">
-        {!flrlist && <Loading type="gradient" size="xl" color="secondary" />}
-        {flrlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
-        {flrlist &&
-          flrlist.map((nft, id) => {
-            async function buylistNft() {
-              setVisible(true);
-              const web3Modal = new Web3Modal();
-              const connection = await web3Modal.connect();
-              const provider = new ethers.providers.Web3Provider(connection);
-              const signer = provider.getSigner();
-              const contract = new ethers.Contract(flrresell, Resell, signer);
-              const transaction = await contract
-                .buyNft(nft.tokenId, {
-                  value: nft.cost,
-                })
-                .catch(() => {
-                  setVisible(false);
-                });
-              if (!transaction) {
-                return;
-              }
-              await transaction.wait();
-              router.push("/portal");
-            }
-            return (
-              <Grid xs={12} sm={4} md={3} key={id}>
-                <Card
-                  css={{
-                    marginRight: "3px",
-                    boxShadow: "1px 1px 10px #ffffff",
-                    marginBottom: "15px",
-                  }}
-                  variant="bordered"
-                >
-                  <Card.Body css={{ p: 0 }}>
-                    <Card.Image
-                      css={{
-                        maxWidth: "100%",
-                        // maxHeight: "150px",
-                        borderRadius: "6%",
-                      }}
-                      src={nft.image} />
-                  </Card.Body>
-                  <Card.Footer css={{ justifyItems: "flex-start" }}>
-                    <Row
-                      key={id}
-                      css={{
-                        flexDirection: "column",
-                        justifyContent: "flex-start",
-                        alignItems: "flex-start",
-                      }}
-                      wrap="wrap"
-                    >
-                      <Text
-                        css={{
-                          fontSize: "18px",
-                          textTransform: "capitalize",
-                          mb: "0",
-                        }}
-                        h4
-                      >
-                        {nft.name} Token-{nft.tokenId}
-                      </Text>
-                      <Text
-                        css={{
-                          fontSize: "16px",
-                          textTransform: "capitalize",
-                          color: "#cecece",
-                          fontWeight: "100",
-                          letterSpacing: "0px",
-                          whiteSpace: "nowrap",
-                          width: "100%",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                        }}
-                        p
-                      >
-                        {nft.desc}
-                      </Text>
-                      <Text
-                        css={{
-                          fontSize: "20px",
-                          display: "flex",
-                          alignItems: "center",
-                          flexWrap: "wrap",
-                          justifyContent: "space-between",
-                          mb: "10px",
-                        }}
-                      >
-                        {nft.val}{" "}
-                        <img
-                          src="n2dr-logo.png"
-                          style={{
-                            width: "60px",
-                            height: "25px",
-                            marginTop: "4px",
-                          }} />
-                      </Text>
-                      {activeChain == "0xE" ? (
-                        <Button
-                          color="gradient"
-                          css={{ fontSize: "16px", minWidth: "100%" }}
-                          onPress={() => handleConfetti(buylistNft(nft))}
-                        >
-                          Buy
-                        </Button>
-                      ) : (
-                        <Button
-                          color="gradient"
-                          css={{ fontSize: "16px", minWidth: "100%" }}
-                          onClick={flrChain}
-                        >
-                          Switch to Flare
-                        </Button>
-                      )}
-                    </Row>
-                  </Card.Footer>
-                </Card>
-              </Grid>
-            );
-          })}
-      </Grid.Container>
-    </Container><Spacer></Spacer><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest NFTs on
-            </Text>
-            <img
-              src="flarelogo.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!flrnfts && <Loading type="gradient" size="xl" color="secondary" />}
-            {flrnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-            {flrnfts &&
-              flrnfts.map((nft, i) => (
-                <Grid xs={12} sm={4} md={3} key={i}>
-                  <BuyCard
-                    nft={nft}
-                    activeChain={activeChain}
-                    networkSwitch={flrChain}
-                    chain={"Flare"}
-                    connectedWallet={connectedWallet}
-                    chainId={"0xE"}
-                    buyFunction={buyNewFlr}
-                    cancelFunction={flrCancelList} />
-                </Grid>
-              ))}
-          </Grid.Container>
-          <Container sm>
-            <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-              <Text h3>Latest Relisted NFTs on </Text>
-              <img
-                src="songbirdlogo.png"
-                style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-            </Row>
-            <Grid.Container gap={1} justify="flex-start">
-              {!hhlist && <Loading type="gradient" size="xl" color="secondary" />}
-              {hhlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
-              {hhlist &&
-                hhlist.map((nft, id) => {
-                  async function buylistNft() {
-                    setVisible(true);
-                    const web3Modal = new Web3Modal();
-                    const connection = await web3Modal.connect();
-                    const provider = new ethers.providers.Web3Provider(connection);
-                    const signer = provider.getSigner();
-                    const contract = new ethers.Contract(hhresell, Resell, signer);
-                    const transaction = await contract
-                      .buyNft(nft.tokenId, {
-                        value: nft.cost,
-                      })
-                      .catch(() => {
-                        setVisible(false);
-                      });
-                    if (!transaction) {
-                      return;
+      </div>
+      <>
+        <Container sm>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <select
+              style={{
+                background: "black",
+                paddingLeft: "30px",
+                paddingBottom: "10px",
+                paddingTop: "10px",
+                paddingRight: "30px",
+                borderRadius: "10px",
+                marginRight: "3%",
+              }}
+              onChange={(e) => networkSelect(e.target.value)}>
+              <option>Ethereum</option>
+              <option>Binance</option>
+              <option>Polygon</option>
+              <option>Flare</option>
+              <option>Songbird</option>
+            </select>
+            <input
+              placeholder="Search Nft"
+              style={{
+                background: "black",
+                outline: "none",
+                border: "1px solid rgba(255,255,255,0.4)",
+                padding: "5px",
+                borderRadius: "8px",
+              }}
+            />
+          </div>
+        </Container>
+        {flareNftShow && (
+          <>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest Relisted NFTs on{" "}
+                </Text>
+                <img
+                  src="flarelogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />{" "}
+                <Text css={{ mr: "15px" }} h3>
+                  Flare Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!flrlist && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {flrlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                {flrlist &&
+                  flrlist.map((nft, id) => {
+                    async function buylistNft() {
+                      setVisible(true);
+                      const web3Modal = new Web3Modal();
+                      const connection = await web3Modal.connect();
+                      const provider = new ethers.providers.Web3Provider(
+                        connection
+                      );
+                      const signer = provider.getSigner();
+                      const contract = new ethers.Contract(
+                        flrresell,
+                        Resell,
+                        signer
+                      );
+                      const transaction = await contract
+                        .buyNft(nft.tokenId, {
+                          value: nft.cost,
+                        })
+                        .catch(() => {
+                          setVisible(false);
+                        });
+                      if (!transaction) {
+                        return;
+                      }
+                      await transaction.wait();
+                      router.push("/portal");
                     }
-                    await transaction.wait();
-                    router.push("/portal");
-                  }
-                  return (
-                    <Grid xs={12} sm={4} md={3} key={id}>
-                      <Card
-                        css={{
-                          marginRight: "3px",
-                          boxShadow: "1px 1px 10px #ffffff",
-                          marginBottom: "15px",
-                        }}
-                        variant="bordered"
-                      >
-                        <Card.Body css={{ p: 0 }}>
-                          <Card.Image
-                            css={{
-                              maxWidth: "100%",
-                              // maxHeight: "150px",
-                              borderRadius: "6%",
-                            }}
-                            src={nft.image} />
-                        </Card.Body>
-                        <Card.Footer css={{ justifyItems: "flex-start" }}>
-                          <Row
-                            key={id}
-                            css={{
-                              flexDirection: "column",
-                              justifyContent: "flex-start",
-                              alignItems: "flex-start",
-                            }}
-                            wrap="wrap"
-                          >
-                            <Text
+                    return (
+                      <Grid xs={12} sm={4} md={3} key={id}>
+                        <Card
+                          css={{
+                            marginRight: "3px",
+                            boxShadow: "1px 1px 10px #ffffff",
+                            marginBottom: "15px",
+                          }}
+                          variant="bordered">
+                          <Card.Body css={{ p: 0 }}>
+                            <Card.Image
                               css={{
-                                color: "#fff",
-                                fontSize: "18px",
-                                textTransform: "capitalize",
-                                mb: "0",
+                                maxWidth: "100%",
+                                // maxHeight: "150px",
+                                borderRadius: "6%",
                               }}
-                              h4
-                            >
-                              {nft.name} Token-{nft.tokenId}
-                            </Text>
-                            <Text
+                              src={nft.image}
+                            />
+                          </Card.Body>
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row
+                              key={id}
                               css={{
-                                fontSize: "16px",
-                                textTransform: "capitalize",
-                                color: "#cecece",
-                                fontWeight: "100",
-                                letterSpacing: "0px",
-                                whiteSpace: "nowrap",
-                                width: "100%",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
                               }}
-                              p
-                            >
-                              {nft.desc}
-                            </Text>
-                            <Text
-                              css={{
-                                fontSize: "20px",
-                                display: "flex",
-                                alignItems: "center",
-                                flexWrap: "wrap",
-                                justifyContent: "space-between",
-                                mb: "10px",
-                              }}
-                            >
-                              {nft.val}{" "}
-                              <img
-                                src="n2dr-logo.png"
-                                style={{
-                                  width: "60px",
-                                  height: "25px",
-                                  marginTop: "4px",
-                                }} />
-                            </Text>
-                            {activeChain == "0x13" ? (
-                              <Button
-                                aria-label="buy"
-                                color="gradient"
-                                css={{ fontSize: "16px", minWidth: "100%" }}
-                                onPress={() => handleConfetti(buylistNft(nft))}
-                              >
-                                Buy
-                              </Button>
-                            ) : (
-                              <Button
-                                color="gradient"
-                                css={{ fontSize: "16px", minWidth: "100%" }}
-                                onClick={hardChain}
-                              >
-                                Switch to Songbird
-                              </Button>
-                            )}
-                          </Row>
-                        </Card.Footer>
-                      </Card>
+                              wrap="wrap">
+                              <Text
+                                css={{
+                                  fontSize: "18px",
+                                  textTransform: "capitalize",
+                                  mb: "0",
+                                }}
+                                h4>
+                                {nft.name} Token-{nft.tokenId}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "16px",
+                                  textTransform: "capitalize",
+                                  color: "#cecece",
+                                  fontWeight: "100",
+                                  letterSpacing: "0px",
+                                  whiteSpace: "nowrap",
+                                  width: "100%",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                                p>
+                                {nft.desc}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexWrap: "wrap",
+                                  justifyContent: "space-between",
+                                  mb: "10px",
+                                }}>
+                                {nft.val}{" "}
+                                <img
+                                  src="n2dr-logo.png"
+                                  style={{
+                                    width: "60px",
+                                    height: "25px",
+                                    marginTop: "4px",
+                                  }}
+                                />
+                              </Text>
+                              {activeChain == "0xE" ? (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onPress={() =>
+                                    handleConfetti(buylistNft(nft))
+                                  }>
+                                  Buy
+                                </Button>
+                              ) : (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onClick={flrChain}>
+                                  Switch to Flare
+                                </Button>
+                              )}
+                            </Row>
+                          </Card.Footer>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+              </Grid.Container>
+            </Container>
+            <Spacer></Spacer>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest NFTs on
+                </Text>
+                <img
+                  src="flarelogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Flare Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!flrnfts && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {flrnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
+                {flrnfts &&
+                  flrnfts.map((nft, i) => (
+                    <Grid xs={12} sm={4} md={3} key={i}>
+                      <BuyCard
+                        nft={nft}
+                        activeChain={activeChain}
+                        networkSwitch={flrChain}
+                        chain={"Flare"}
+                        connectedWallet={connectedWallet}
+                        chainId={"0xE"}
+                        buyFunction={buyNewFlr}
+                        cancelFunction={flrCancelList}
+                      />
                     </Grid>
-                  );
-                })}
-            </Grid.Container>
-          </Container>
-          <Spacer></Spacer>
-          <Container sm>
-            <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-              <Text h3>Available NFTs on </Text>
-              <img
-                src="songbirdlogo.png"
-                style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-            </Row>
-            <Grid.Container gap={1} justify="flex-start">
-              {!hhnfts && <Loading type="gradient" size="xl" color="secondary" />}
-              {hhnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-              {hhnfts &&
-                hhnfts.map((nft, i) => (
-                  <Grid xs={12} sm={4} md={3} key={i}>
-                    <BuyCard
-                      nft={nft}
-                      activeChain={activeChain}
-                      networkSwitch={hardChain}
-                      chain={"Songbird"}
-                      connectedWallet={connectedWallet}
-                      chainId={"0x13"}
-                      buyFunction={buyNewHH}
-                      cancelFunction={hhCancelList} />
-                  </Grid>
-                ))}
-            </Grid.Container>
-          </Container>
+                  ))}
+              </Grid.Container>
+             
+            </Container>
+            
+          </>
+        )}
+        {songbirdNftShow && (
+          <>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text h3>Latest Relisted NFTs on </Text>
+                <img
+                  src="songbirdlogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Songbird Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!hhlist && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {hhlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                {hhlist &&
+                  hhlist.map((nft, id) => {
+                    async function buylistNft() {
+                      setVisible(true);
+                      const web3Modal = new Web3Modal();
+                      const connection = await web3Modal.connect();
+                      const provider = new ethers.providers.Web3Provider(
+                        connection
+                      );
+                      const signer = provider.getSigner();
+                      const contract = new ethers.Contract(
+                        hhresell,
+                        Resell,
+                        signer
+                      );
+                      const transaction = await contract
+                        .buyNft(nft.tokenId, {
+                          value: nft.cost,
+                        })
+                        .catch(() => {
+                          setVisible(false);
+                        });
+                      if (!transaction) {
+                        return;
+                      }
+                      await transaction.wait();
+                      router.push("/portal");
+                    }
+                    return (
+                      <Grid xs={12} sm={4} md={3} key={id}>
+                        <Card
+                          css={{
+                            marginRight: "3px",
+                            boxShadow: "1px 1px 10px #ffffff",
+                            marginBottom: "15px",
+                          }}
+                          variant="bordered">
+                          <Card.Body css={{ p: 0 }}>
+                            <Card.Image
+                              css={{
+                                maxWidth: "100%",
+                                // maxHeight: "150px",
+                                borderRadius: "6%",
+                              }}
+                              src={nft.image}
+                            />
+                          </Card.Body>
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row
+                              key={id}
+                              css={{
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                              }}
+                              wrap="wrap">
+                              <Text
+                                css={{
+                                  color: "#fff",
+                                  fontSize: "18px",
+                                  textTransform: "capitalize",
+                                  mb: "0",
+                                }}
+                                h4>
+                                {nft.name} Token-{nft.tokenId}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "16px",
+                                  textTransform: "capitalize",
+                                  color: "#cecece",
+                                  fontWeight: "100",
+                                  letterSpacing: "0px",
+                                  whiteSpace: "nowrap",
+                                  width: "100%",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                                p>
+                                {nft.desc}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexWrap: "wrap",
+                                  justifyContent: "space-between",
+                                  mb: "10px",
+                                }}>
+                                {nft.val}{" "}
+                                <img
+                                  src="n2dr-logo.png"
+                                  style={{
+                                    width: "60px",
+                                    height: "25px",
+                                    marginTop: "4px",
+                                  }}
+                                />
+                              </Text>
+                              {activeChain == "0x13" ? (
+                                <Button
+                                  aria-label="buy"
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onPress={() =>
+                                    handleConfetti(buylistNft(nft))
+                                  }>
+                                  Buy
+                                </Button>
+                              ) : (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onClick={hardChain}>
+                                  Switch to Songbird
+                                </Button>
+                              )}
+                            </Row>
+                          </Card.Footer>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+              </Grid.Container>
+            </Container>
+            <Spacer></Spacer>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text h3>Available NFTs on </Text>
+                <img
+                  src="songbirdlogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Songbird Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!hhnfts && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {hhnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
+                {hhnfts &&
+                  hhnfts.map((nft, i) => (
+                    <Grid xs={12} sm={4} md={3} key={i}>
+                      <BuyCard
+                        nft={nft}
+                        activeChain={activeChain}
+                        networkSwitch={hardChain}
+                        chain={"Songbird"}
+                        connectedWallet={connectedWallet}
+                        chainId={"0x13"}
+                        buyFunction={buyNewHH}
+                        cancelFunction={hhCancelList}
+                      />
+                    </Grid>
+                  ))}
+              </Grid.Container>
+            </Container>
+          </>
+        )}
 
-        </Container><Container sm>
+        {binanceNftShow && (
+          <>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest Relisted NFTs on{" "}
+                </Text>
+                <img
+                  src="bsc.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Binance Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!bnblist && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {bnblist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                {bnblist &&
+                  bnblist.map((nft, id) => {
+                    async function buylistNft() {
+                      setVisible(true);
+                      const web3Modal = new Web3Modal();
+                      const connection = await web3Modal.connect();
+                      const provider = new ethers.providers.Web3Provider(
+                        connection
+                      );
+                      const signer = provider.getSigner();
+                      const contract = new ethers.Contract(
+                        bnbresell,
+                        Resell,
+                        signer
+                      );
+                      const transaction = await contract
+                        .buyNft(nft.tokenId, {
+                          value: nft.cost,
+                        })
+                        .catch(() => {
+                          setVisible(false);
+                        });
+                      if (!transaction) {
+                        return;
+                      }
+                      await transaction.wait();
+                      router.push("/portal");
+                    }
+                    return (
+                      <Grid xs={12} sm={4} md={3} key={id}>
+                        <Card
+                          css={{
+                            marginRight: "3px",
+                            boxShadow: "1px 1px 10px #ffffff",
+                            marginBottom: "15px",
+                          }}
+                          variant="bordered">
+                          <Card.Body css={{ p: 0 }}>
+                            <Card.Image
+                              css={{
+                                maxWidth: "100%",
+                                // maxHeight: "150px",
+                                borderRadius: "6%",
+                              }}
+                              src={nft.image}
+                            />
+                          </Card.Body>
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row
+                              key={id}
+                              css={{
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                                // "@media screen and (min-width:1000px)": {
+                                // },
+                              }}
+                              wrap="wrap">
+                              <Text
+                                css={{
+                                  fontSize: "18px",
+                                  textTransform: "capitalize",
+                                  mb: "0",
+                                }}
+                                h4>
+                                {nft.name} Token-{nft.tokenId}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "16px",
+                                  textTransform: "capitalize",
+                                  color: "#cecece",
+                                  fontWeight: "100",
+                                  letterSpacing: "0px",
+                                  whiteSpace: "nowrap",
+                                  width: "100%",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                                p>
+                                {nft.desc}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexWrap: "wrap",
+                                  justifyContent: "space-between",
+                                  mb: "10px",
+                                }}>
+                                {nft.val}{" "}
+                                <img
+                                  src="n2dr-logo.png"
+                                  style={{
+                                    width: "60px",
+                                    height: "25px",
+                                    marginTop: "4px",
+                                  }}
+                                />
+                              </Text>
+                              {activeChain === "0x38" ? (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onPress={() =>
+                                    handleConfetti(buylistNft(nft))
+                                  }>
+                                  Buy
+                                </Button>
+                              ) : (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onClick={bscChain}>
+                                  Switch to binance
+                                </Button>
+                              )}
+                            </Row>
+                          </Card.Footer>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+              </Grid.Container>
+            </Container>
+            <Spacer></Spacer>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest NFTs on
+                </Text>
+                <img
+                  src="bsc.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Binance Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!bnbnfts && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {bnbnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
+                {bnbnfts &&
+                  bnbnfts.map((nft, i) => (
+                    <Grid xs={12} sm={4} md={3} key={i}>
+                      <BuyCard
+                        nft={nft}
+                        activeChain={activeChain}
+                        networkSwitch={bscChain}
+                        chain={"Binance"}
+                        connectedWallet={connectedWallet}
+                        chainId={"0x38"}
+                        buyFunction={buyNewBnb}
+                        cancelFunction={bnbCancelList}
+                      />
+                    </Grid>
+                  ))}
+              </Grid.Container>
+            </Container>
+          </>
+        )}
+
+        {polygonNftShow && (
+          <>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest Relisted NFTs on{" "}
+                </Text>
+                <img
+                  src="polygonwhite.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Polygon Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!polylist && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {polylist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                {polylist &&
+                  polylist.map((nft, id) => {
+                    async function buylistNft() {
+                      setVisible(true);
+                      const web3Modal = new Web3Modal();
+                      const connection = await web3Modal.connect();
+                      const provider = new ethers.providers.Web3Provider(
+                        connection
+                      );
+                      const signer = provider.getSigner();
+                      const contract = new ethers.Contract(
+                        polyresell,
+                        Resell,
+                        signer
+                      );
+                      const transaction = await contract
+                        .buyNft(nft.tokenId, {
+                          value: nft.cost,
+                        })
+                        .catch(() => {
+                          setVisible(false);
+                        });
+                      if (!transaction) {
+                        return;
+                      }
+                      await transaction.wait();
+                      router.push("/portal");
+                    }
+                    return (
+                      <Grid xs={12} sm={4} md={3} key={id}>
+                        <Card
+                          css={{
+                            marginRight: "3px",
+                            boxShadow: "1px 1px 10px #ffffff",
+                            marginBottom: "15px",
+                          }}
+                          variant="bordered">
+                          <Card.Body css={{ p: 0 }}>
+                            <Card.Image
+                              css={{
+                                maxWidth: "100%",
+                                // maxHeight: "150px",
+                                borderRadius: "6%",
+                              }}
+                              src={nft.image}
+                            />
+                          </Card.Body>
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row
+                              key={id}
+                              css={{
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                              }}
+                              wrap="wrap">
+                              <Text
+                                css={{
+                                  fontSize: "18px",
+                                  textTransform: "capitalize",
+                                  mb: "0",
+                                }}
+                                h4>
+                                {nft.name} Token-{nft.tokenId}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "16px",
+                                  textTransform: "capitalize",
+                                  color: "#cecece",
+                                  fontWeight: "100",
+                                  letterSpacing: "0px",
+                                  whiteSpace: "nowrap",
+                                  width: "100%",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                                p>
+                                {nft.desc}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexWrap: "wrap",
+                                  justifyContent: "space-between",
+                                  mb: "10px",
+                                }}>
+                                {nft.val}{" "}
+                                <img
+                                  src="n2dr-logo.png"
+                                  style={{
+                                    width: "60px",
+                                    height: "25px",
+                                    marginTop: "4px",
+                                  }}
+                                />
+                              </Text>
+                              {activeChain === "0x89" ? (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onPress={() =>
+                                    handleConfetti(buylistNft(nft))
+                                  }>
+                                  Buy
+                                </Button>
+                              ) : (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onClick={polyChain}>
+                                  Switch to Polygon
+                                </Button>
+                              )}
+                            </Row>
+                          </Card.Footer>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+              </Grid.Container>
+            </Container>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest NFTs on
+                </Text>
+                <img
+                  src="polygonwhite.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Polygon Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!polynfts && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {polynfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
+                {polynfts &&
+                  polynfts.map(
+                    (nft, i) =>
+                      nft && (
+                        <Grid xs={12} sm={4} md={3} key={i}>
+                          <BuyCard
+                            nft={nft}
+                            activeChain={activeChain}
+                            networkSwitch={polyChain}
+                            chain={"Polygon"}
+                            connectedWallet={connectedWallet}
+                            chainId={"0x89"}
+                            buyFunction={buyNewPoly}
+                            cancelFunction={polyCancelList}
+                          />
+                        </Grid>
+                      )
+                  )}
+              </Grid.Container>
+            </Container>
+          </>
+        )}
+
+        {ethereumNftShow && (
+          <>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest Relisted NFTs on{" "}
+                </Text>
+                <img
+                  src="ethereumlogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Ethereum Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!ethlist && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {ethlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                {ethlist &&
+                  ethlist.map((nft, id) => {
+                    async function buylistNft() {
+                      setVisible(true);
+                      const web3Modal = new Web3Modal();
+                      const connection = await web3Modal.connect();
+                      const provider = new ethers.providers.Web3Provider(
+                        connection
+                      );
+                      const signer = provider.getSigner();
+                      const contract = new ethers.Contract(
+                        ethresell,
+                        Resell,
+                        signer
+                      );
+                      const transaction = await contract
+                        .buyNft(nft.tokenId, {
+                          value: nft.cost,
+                        })
+                        .catch(() => {
+                          setVisible(false);
+                        });
+                      if (!transaction) {
+                        return;
+                      }
+                      await transaction.wait();
+                      router.push("/portal");
+                    }
+                    return (
+                      <Grid xs={12} sm={4} md={3} key={id}>
+                        <Card
+                          css={{
+                            marginRight: "3px",
+                            boxShadow: "1px 1px 10px #ffffff",
+                            marginBottom: "15px",
+                          }}
+                          variant="bordered">
+                          <Card.Body css={{ p: 0 }}>
+                            <Card.Image
+                              css={{
+                                maxWidth: "100%",
+                                // maxHeight: "150px",
+                                borderRadius: "6%",
+                              }}
+                              src={nft.image}
+                            />
+                          </Card.Body>
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row
+                              key={id}
+                              css={{
+                                flexDirection: "column",
+                                justifyContent: "flex-start",
+                                alignItems: "flex-start",
+                              }}
+                              wrap="wrap">
+                              <Text
+                                css={{
+                                  fontSize: "18px",
+                                  textTransform: "capitalize",
+                                  mb: "0",
+                                }}
+                                h4>
+                                {nft.name} Token-{nft.tokenId}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "16px",
+                                  textTransform: "capitalize",
+                                  color: "#cecece",
+                                  fontWeight: "100",
+                                  letterSpacing: "0px",
+                                  whiteSpace: "nowrap",
+                                  width: "100%",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                                p>
+                                {nft.desc}
+                              </Text>
+                              <Text
+                                css={{
+                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexWrap: "wrap",
+                                  justifyContent: "space-between",
+                                  mb: "10px",
+                                }}>
+                                {nft.val}{" "}
+                                <img
+                                  src="n2dr-logo.png"
+                                  style={{
+                                    width: "60px",
+                                    height: "25px",
+                                    marginTop: "4px",
+                                  }}
+                                />
+                              </Text>
+                              {activeChain == "0x1" ? (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onPress={() =>
+                                    handleConfetti(buylistNft(nft))
+                                  }>
+                                  Buy
+                                </Button>
+                              ) : (
+                                <Button
+                                  color="gradient"
+                                  css={{ fontSize: "16px", minWidth: "100%" }}
+                                  onClick={ethChain}>
+                                  Switch to Ethereum
+                                </Button>
+                              )}
+                            </Row>
+                          </Card.Footer>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+              </Grid.Container>
+            </Container>
+            <Spacer></Spacer>
+            <Container sm>
+              <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+                <Text css={{ mr: "15px" }} h3>
+                  Latest NFTs on
+                </Text>
+                <img
+                  src="ethereumlogo.png"
+                  style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+                />
+                <Text css={{ mr: "15px" }} h3>
+                  Ethereum Network
+                </Text>
+              </Row>
+              <Grid.Container gap={1} justify="flex-start">
+                {!ethnfts && (
+                  <Loading type="gradient" size="xl" color="secondary" />
+                )}
+                {ethnfts &&
+                  ethnfts.map((nft, i) => (
+                    <Grid xs={12} sm={4} md={3} key={i}>
+                      <BuyCard
+                        nft={nft}
+                        activeChain={activeChain}
+                        networkSwitch={ethChain}
+                        chain={"Ethereum"}
+                        connectedWallet={connectedWallet}
+                        chainId={"0x1"}
+                        buyFunction={buyNewGoe}
+                        cancelFunction={goeCancelList}
+                      />
+                    </Grid>
+                  ))}
+              </Grid.Container>
+            </Container>
+          </>
+        )}
+        {/* */}
+        {/* <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest Relisted NFTs on{" "}
             </Text>
             <img
               src="bsc.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!bnblist && <Loading type="gradient" size="xl" color="secondary" />}
-            {bnblist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
-            {bnblist &&
-              bnblist.map((nft, id) => {
-                async function buylistNft() {
-                  setVisible(true);
-                  const web3Modal = new Web3Modal();
-                  const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
-                  const signer = provider.getSigner();
-                  const contract = new ethers.Contract(
-                    bnbresell,
-                    Resell,
-                    signer
-                  );
-                  const transaction = await contract
-                    .buyNft(nft.tokenId, {
-                      value: nft.cost,
-                    })
-                    .catch(() => {
-                      setVisible(false);
-                    });
-                  if (!transaction) {
-                    return;
-                  }
-                  await transaction.wait();
-                  router.push("/portal");
-                }
-                return (
-                  <Grid xs={12} sm={4} md={3} key={id}>
-                    <Card
-                      css={{
-                        marginRight: "3px",
-                        boxShadow: "1px 1px 10px #ffffff",
-                        marginBottom: "15px",
-                      }}
-                      variant="bordered"
-                    >
-                      <Card.Body css={{ p: 0 }}>
-                        <Card.Image
-                          css={{
-                            maxWidth: "100%",
-                            // maxHeight: "150px",
-                            borderRadius: "6%",
-                          }}
-                          src={nft.image} />
-                      </Card.Body>
-                      <Card.Footer css={{ justifyItems: "flex-start" }}>
-                        <Row
-                          key={id}
-                          css={{
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            alignItems: "flex-start",
-                            // "@media screen and (min-width:1000px)": {
-                            // },
-                          }}
-                          wrap="wrap"
-                        >
-                          <Text
-                            css={{
-                              fontSize: "18px",
-                              textTransform: "capitalize",
-                              mb: "0",
-                            }}
-                            h4
-                          >
-                            {nft.name} Token-{nft.tokenId}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "16px",
-                              textTransform: "capitalize",
-                              color: "#cecece",
-                              fontWeight: "100",
-                              letterSpacing: "0px",
-                              whiteSpace: "nowrap",
-                              width: "100%",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                            p
-                          >
-                            {nft.desc}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "20px",
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                              justifyContent: "space-between",
-                              mb: "10px",
-                            }}
-                          >
-                            {nft.val}{" "}
-                            <img
-                              src="n2dr-logo.png"
-                              style={{
-                                width: "60px",
-                                height: "25px",
-                                marginTop: "4px",
-                              }} />
-                          </Text>
-                          {activeChain === "0x38" ? (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
-                              Buy
-                            </Button>
-                          ) : (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={bscChain}
-                            >
-                              Switch to binance
-                            </Button>
-                          )}
-                        </Row>
-                      </Card.Footer>
-                    </Card>
-                  </Grid>
-                );
-              })}
-          </Grid.Container>
-        </Container><Spacer></Spacer><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />
             <Text css={{ mr: "15px" }} h3>
-              Latest NFTs on
+              Binance Network
             </Text>
-            <img
-              src="bsc.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
           </Row>
           <Grid.Container gap={1} justify="flex-start">
-            {!bnbnfts && <Loading type="gradient" size="xl" color="secondary" />}
-            {bnbnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-            {bnbnfts &&
-              bnbnfts.map((nft, i) => (
-                <Grid xs={12} sm={4} md={3} key={i}>
-                  <BuyCard
-                    nft={nft}
-                    activeChain={activeChain}
-                    networkSwitch={bscChain}
-                    chain={"Binance"}
-                    connectedWallet={connectedWallet}
-                    chainId={"0x38"}
-                    buyFunction={buyNewBnb}
-                    cancelFunction={bnbCancelList} />
-                </Grid>
-              ))}
-          </Grid.Container>
-        </Container><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest Relisted NFTs on{" "}
-            </Text>
-            <img
-              src="polygonwhite.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!polylist && <Loading type="gradient" size="xl" color="secondary" />}
-            {polylist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
-            {polylist &&
-              polylist.map((nft, id) => {
-                async function buylistNft() {
-                  setVisible(true);
-                  const web3Modal = new Web3Modal();
-                  const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
-                  const signer = provider.getSigner();
-                  const contract = new ethers.Contract(polyresell, Resell, signer);
-                  const transaction = await contract
-                    .buyNft(nft.tokenId, {
-                      value: nft.cost,
-                    })
-                    .catch(() => {
-                      setVisible(false);
-                    });
-                  if (!transaction) {
-                    return;
-                  }
-                  await transaction.wait();
-                  router.push("/portal");
-                }
-                return (
-                  <Grid xs={12} sm={4} md={3} key={id}>
-                    <Card
-                      css={{
-                        marginRight: "3px",
-                        boxShadow: "1px 1px 10px #ffffff",
-                        marginBottom: "15px",
-                      }}
-                      variant="bordered"
-                    >
-                      <Card.Body css={{ p: 0 }}>
-                        <Card.Image
-                          css={{
-                            maxWidth: "100%",
-                            // maxHeight: "150px",
-                            borderRadius: "6%",
-                          }}
-                          src={nft.image} />
-                      </Card.Body>
-                      <Card.Footer css={{ justifyItems: "flex-start" }}>
-                        <Row
-                          key={id}
-                          css={{
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            alignItems: "flex-start",
-                          }}
-                          wrap="wrap"
-                        >
-                          <Text
-                            css={{
-                              fontSize: "18px",
-                              textTransform: "capitalize",
-                              mb: "0",
-                            }}
-                            h4
-                          >
-                            {nft.name} Token-{nft.tokenId}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "16px",
-                              textTransform: "capitalize",
-                              color: "#cecece",
-                              fontWeight: "100",
-                              letterSpacing: "0px",
-                              whiteSpace: "nowrap",
-                              width: "100%",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                            p
-                          >
-                            {nft.desc}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "20px",
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                              justifyContent: "space-between",
-                              mb: "10px",
-                            }}
-                          >
-                            {nft.val}{" "}
-                            <img
-                              src="n2dr-logo.png"
-                              style={{
-                                width: "60px",
-                                height: "25px",
-                                marginTop: "4px",
-                              }} />
-                          </Text>
-                          {activeChain === "0x89" ? (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
-                              Buy
-                            </Button>
-                          ) : (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={polyChain}
-                            >
-                              Switch to Polygon
-                            </Button>
-                          )}
-                        </Row>
-                      </Card.Footer>
-                    </Card>
-                  </Grid>
-                );
-              })}
-          </Grid.Container>
-        </Container><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest NFTs on
-            </Text>
-            <img
-              src="polygonwhite.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!polynfts && <Loading type="gradient" size="xl" color="secondary" />}
-            {polynfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-            {polynfts &&
-              polynfts.map(
-                (nft, i) => nft && (
-                  <Grid xs={12} sm={4} md={3} key={i}>
-                    <BuyCard
-                      nft={nft}
-                      activeChain={activeChain}
-                      networkSwitch={polyChain}
-                      chain={"Polygon"}
-                      connectedWallet={connectedWallet}
-                      chainId={"0x89"}
-                      buyFunction={buyNewPoly}
-                      cancelFunction={polyCancelList} />
-                  </Grid>
-                )
-              )}
-          </Grid.Container>
-        </Container><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest Relisted NFTs on{" "}
-            </Text>
-            <img
-              src="ethereumlogo.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!ethlist && <Loading type="gradient" size="xl" color="secondary" />}
-            {ethlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
-            {ethlist &&
-              ethlist.map((nft, id) => {
-                async function buylistNft() {
-                  setVisible(true);
-                  const web3Modal = new Web3Modal();
-                  const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
-                  const signer = provider.getSigner();
-                  const contract = new ethers.Contract(ethresell, Resell, signer);
-                  const transaction = await contract
-                    .buyNft(nft.tokenId, {
-                      value: nft.cost,
-                    })
-                    .catch(() => {
-                      setVisible(false);
-                    });
-                  if (!transaction) {
-                    return;
-                  }
-                  await transaction.wait();
-                  router.push("/portal");
-                }
-                return (
-                  <Grid xs={12} sm={4} md={3} key={id}>
-                    <Card
-                      css={{
-                        marginRight: "3px",
-                        boxShadow: "1px 1px 10px #ffffff",
-                        marginBottom: "15px",
-                      }}
-                      variant="bordered"
-                    >
-                      <Card.Body css={{ p: 0 }}>
-                        <Card.Image
-                          css={{
-                            maxWidth: "100%",
-                            // maxHeight: "150px",
-                            borderRadius: "6%",
-                          }}
-                          src={nft.image} />
-                      </Card.Body>
-                      <Card.Footer css={{ justifyItems: "flex-start" }}>
-                        <Row
-                          key={id}
-                          css={{
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            alignItems: "flex-start",
-                          }}
-                          wrap="wrap"
-                        >
-                          <Text
-                            css={{
-                              fontSize: "18px",
-                              textTransform: "capitalize",
-                              mb: "0",
-                            }}
-                            h4
-                          >
-                            {nft.name} Token-{nft.tokenId}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "16px",
-                              textTransform: "capitalize",
-                              color: "#cecece",
-                              fontWeight: "100",
-                              letterSpacing: "0px",
-                              whiteSpace: "nowrap",
-                              width: "100%",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                            p
-                          >
-                            {nft.desc}
-                          </Text>
-                          <Text
-                            css={{
-                              fontSize: "20px",
-                              display: "flex",
-                              alignItems: "center",
-                              flexWrap: "wrap",
-                              justifyContent: "space-between",
-                              mb: "10px",
-                            }}
-                          >
-                            {nft.val}{" "}
-                            <img
-                              src="n2dr-logo.png"
-                              style={{
-                                width: "60px",
-                                height: "25px",
-                                marginTop: "4px",
-                              }} />
-                          </Text>
-                          {activeChain == "0x1" ? (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
-                              Buy
-                            </Button>
-                          ) : (
-                            <Button
-                              color="gradient"
-                              css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={ethChain}
-                            >
-                              Switch to Ethereum
-                            </Button>
-                          )}
-                        </Row>
-                      </Card.Footer>
-                    </Card>
-                  </Grid>
-                );
-              })}
-          </Grid.Container>
-        </Container><Spacer></Spacer><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest NFTs on
-            </Text>
-            <img
-              src="ethereumlogo.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!ethnfts && <Loading type="gradient" size="xl" color="secondary" />}
-            {ethnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-            {ethnfts &&
-              ethnfts.map((nft, i) => (
-                <Grid xs={12} sm={4} md={3} key={i}>
-                  <BuyCard
-                    nft={nft}
-                    activeChain={activeChain}
-                    networkSwitch={ethChain}
-                    chain={"Ethereum"}
-                    connectedWallet={connectedWallet}
-                    chainId={"0x1"}
-                    buyFunction={buyNewGoe}
-                    cancelFunction={goeCancelList} />
-                </Grid>
-              ))}
-          </Grid.Container>
-        </Container><Container sm>
-          <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
-            <Text css={{ mr: "15px" }} h3>
-              Latest Relisted NFTs on{" "}
-            </Text>
-            <img
-              src="bsc.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
-          </Row>
-          <Grid.Container gap={1} justify="flex-start">
-            {!bsctlist && <Loading type="gradient" size="xl" color="secondary" />}
+            {!bsctlist && (
+              <Loading type="gradient" size="xl" color="secondary" />
+            )}
             {bsctlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
             {bsctlist &&
               bsctlist.map((nft, id) => {
@@ -2350,7 +2640,9 @@ export default function Home() {
                   setVisible(true);
                   const web3Modal = new Web3Modal();
                   const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
+                  const provider = new ethers.providers.Web3Provider(
+                    connection
+                  );
                   const signer = provider.getSigner();
                   const contract = new ethers.Contract(
                     bsctresell,
@@ -2378,8 +2670,7 @@ export default function Home() {
                         boxShadow: "1px 1px 10px #ffffff",
                         marginBottom: "15px",
                       }}
-                      variant="bordered"
-                    >
+                      variant="bordered">
                       <Card.Body css={{ p: 0 }}>
                         <Card.Image
                           css={{
@@ -2387,7 +2678,8 @@ export default function Home() {
                             // maxHeight: "150px",
                             borderRadius: "6%",
                           }}
-                          src={nft.image} />
+                          src={nft.image}
+                        />
                       </Card.Body>
                       <Card.Footer css={{ justifyItems: "flex-start" }}>
                         <Row
@@ -2399,16 +2691,14 @@ export default function Home() {
                             // "@media screen and (min-width:1000px)": {
                             // },
                           }}
-                          wrap="wrap"
-                        >
+                          wrap="wrap">
                           <Text
                             css={{
                               fontSize: "18px",
                               textTransform: "capitalize",
                               mb: "0",
                             }}
-                            h4
-                          >
+                            h4>
                             {nft.name} Token-{nft.tokenId}
                           </Text>
                           <Text
@@ -2423,8 +2713,7 @@ export default function Home() {
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                             }}
-                            p
-                          >
+                            p>
                             {nft.desc}
                           </Text>
                           <Text
@@ -2435,8 +2724,7 @@ export default function Home() {
                               flexWrap: "wrap",
                               justifyContent: "space-between",
                               mb: "10px",
-                            }}
-                          >
+                            }}>
                             {nft.val}{" "}
                             <img
                               src="n2dr-logo.png"
@@ -2444,22 +2732,21 @@ export default function Home() {
                                 width: "60px",
                                 height: "25px",
                                 marginTop: "4px",
-                              }} />
+                              }}
+                            />
                           </Text>
                           {activeChain === "0x61" ? (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
+                              onPress={() => handleConfetti(buylistNft(nft))}>
                               Buy
                             </Button>
                           ) : (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={bscTest}
-                            >
+                              onClick={bscTest}>
                               Switch to BSC
                             </Button>
                           )}
@@ -2470,17 +2757,25 @@ export default function Home() {
                 );
               })}
           </Grid.Container>
-        </Container><Spacer></Spacer><Container sm>
+        </Container>
+        <Spacer></Spacer>
+        <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest NFTs on
             </Text>
             <img
               src="bsc.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />
+            <Text css={{ mr: "15px" }} h3>
+              Binance Network
+            </Text>
           </Row>
           <Grid.Container gap={1} justify="flex-start">
-            {!bsctnfts && <Loading type="gradient" size="xl" color="secondary" />}
+            {!bsctnfts && (
+              <Loading type="gradient" size="xl" color="secondary" />
+            )}
             {bsctnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
             {bsctnfts &&
               bsctnfts.map((nft, i) => (
@@ -2493,18 +2788,24 @@ export default function Home() {
                     connectedWallet={connectedWallet}
                     chainId={"0x61"}
                     buyFunction={buyNewBsct}
-                    cancelFunction={bsctCancelList} />
+                    cancelFunction={bsctCancelList}
+                  />
                 </Grid>
               ))}
           </Grid.Container>
-        </Container><Container sm>
+        </Container>
+        <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest Relisted NFTs on{" "}
             </Text>
             <img
               src="polygonwhite.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />
+            <Text css={{ mr: "15px" }} h3>
+              Polygon Network
+            </Text>
           </Row>
           <Grid.Container gap={1} justify="flex-start">
             {!mmlist && <Loading type="gradient" size="xl" color="secondary" />}
@@ -2515,9 +2816,15 @@ export default function Home() {
                   setVisible(true);
                   const web3Modal = new Web3Modal();
                   const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
+                  const provider = new ethers.providers.Web3Provider(
+                    connection
+                  );
                   const signer = provider.getSigner();
-                  const contract = new ethers.Contract(mmresell, Resell, signer);
+                  const contract = new ethers.Contract(
+                    mmresell,
+                    Resell,
+                    signer
+                  );
                   const transaction = await contract
                     .buyNft(nft.tokenId, {
                       value: nft.cost,
@@ -2539,8 +2846,7 @@ export default function Home() {
                         boxShadow: "1px 1px 10px #ffffff",
                         marginBottom: "15px",
                       }}
-                      variant="bordered"
-                    >
+                      variant="bordered">
                       <Card.Body css={{ p: 0 }}>
                         <Card.Image
                           css={{
@@ -2548,7 +2854,8 @@ export default function Home() {
                             // maxHeight: "150px",
                             borderRadius: "6%",
                           }}
-                          src={nft.image} />
+                          src={nft.image}
+                        />
                       </Card.Body>
                       <Card.Footer css={{ justifyItems: "flex-start" }}>
                         <Row
@@ -2558,16 +2865,14 @@ export default function Home() {
                             justifyContent: "flex-start",
                             alignItems: "flex-start",
                           }}
-                          wrap="wrap"
-                        >
+                          wrap="wrap">
                           <Text
                             css={{
                               fontSize: "18px",
                               textTransform: "capitalize",
                               mb: "0",
                             }}
-                            h4
-                          >
+                            h4>
                             {nft.name} Token-{nft.tokenId}
                           </Text>
                           <Text
@@ -2582,8 +2887,7 @@ export default function Home() {
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                             }}
-                            p
-                          >
+                            p>
                             {nft.desc}
                           </Text>
                           <Text
@@ -2594,8 +2898,7 @@ export default function Home() {
                               flexWrap: "wrap",
                               justifyContent: "space-between",
                               mb: "10px",
-                            }}
-                          >
+                            }}>
                             {nft.val}{" "}
                             <img
                               src="n2dr-logo.png"
@@ -2603,22 +2906,21 @@ export default function Home() {
                                 width: "60px",
                                 height: "25px",
                                 marginTop: "4px",
-                              }} />
+                              }}
+                            />
                           </Text>
                           {activeChain === ("0x13881" || "80001") ? (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
+                              onPress={() => handleConfetti(buylistNft(nft))}>
                               Buy
                             </Button>
                           ) : (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={polyTest}
-                            >
+                              onClick={polyTest}>
                               Switch to Mumbai
                             </Button>
                           )}
@@ -2629,46 +2931,60 @@ export default function Home() {
                 );
               })}
           </Grid.Container>
-        </Container><Container sm>
+        </Container>
+        <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest NFTs on
             </Text>
             <img
               src="polygonwhite.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />
+            <Text css={{ mr: "15px" }} h3>
+              Polygon Network
+            </Text>
           </Row>
           <Grid.Container gap={1} justify="flex-start">
             {!mmnfts && <Loading type="gradient" size="xl" color="secondary" />}
             {mmnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
             {mmnfts &&
               mmnfts.map(
-                (nft, i) => nft && (
-                  <Grid xs={12} sm={4} md={3} key={i}>
-                    <BuyCard
-                      nft={nft}
-                      activeChain={activeChain}
-                      networkSwitch={polyTest}
-                      chain={"Mumbai"}
-                      connectedWallet={connectedWallet}
-                      chainId={"0x13881"}
-                      buyFunction={buyNewMum}
-                      cancelFunction={mumCancelList} />
-                  </Grid>
-                )
+                (nft, i) =>
+                  nft && (
+                    <Grid xs={12} sm={4} md={3} key={i}>
+                      <BuyCard
+                        nft={nft}
+                        activeChain={activeChain}
+                        networkSwitch={polyTest}
+                        chain={"Mumbai"}
+                        connectedWallet={connectedWallet}
+                        chainId={"0x13881"}
+                        buyFunction={buyNewMum}
+                        cancelFunction={mumCancelList}
+                      />
+                    </Grid>
+                  )
               )}
           </Grid.Container>
-        </Container><Container sm>
+        </Container>
+        <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest Relisted NFTs on{" "}
             </Text>
             <img
               src="ethereumlogo.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />{" "}
+            <Text css={{ mr: "15px" }} h3>
+              Ethereum Network
+            </Text>
           </Row>
           <Grid.Container gap={1} justify="flex-start">
-            {!goelist && <Loading type="gradient" size="xl" color="secondary" />}
+            {!goelist && (
+              <Loading type="gradient" size="xl" color="secondary" />
+            )}
             {goelist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
             {goelist &&
               goelist.map((nft, id) => {
@@ -2676,9 +2992,15 @@ export default function Home() {
                   setVisible(true);
                   const web3Modal = new Web3Modal();
                   const connection = await web3Modal.connect();
-                  const provider = new ethers.providers.Web3Provider(connection);
+                  const provider = new ethers.providers.Web3Provider(
+                    connection
+                  );
                   const signer = provider.getSigner();
-                  const contract = new ethers.Contract(goeresell, Resell, signer);
+                  const contract = new ethers.Contract(
+                    goeresell,
+                    Resell,
+                    signer
+                  );
                   const transaction = await contract
                     .buyNft(nft.tokenId, {
                       value: nft.cost,
@@ -2700,8 +3022,7 @@ export default function Home() {
                         boxShadow: "1px 1px 10px #ffffff",
                         marginBottom: "15px",
                       }}
-                      variant="bordered"
-                    >
+                      variant="bordered">
                       <Card.Body css={{ p: 0 }}>
                         <Card.Image
                           css={{
@@ -2709,7 +3030,8 @@ export default function Home() {
                             // maxHeight: "150px",
                             borderRadius: "6%",
                           }}
-                          src={nft.image} />
+                          src={nft.image}
+                        />
                       </Card.Body>
                       <Card.Footer css={{ justifyItems: "flex-start" }}>
                         <Row
@@ -2719,16 +3041,14 @@ export default function Home() {
                             justifyContent: "flex-start",
                             alignItems: "flex-start",
                           }}
-                          wrap="wrap"
-                        >
+                          wrap="wrap">
                           <Text
                             css={{
                               fontSize: "18px",
                               textTransform: "capitalize",
                               mb: "0",
                             }}
-                            h4
-                          >
+                            h4>
                             {nft.name} Token-{nft.tokenId}
                           </Text>
                           <Text
@@ -2743,8 +3063,7 @@ export default function Home() {
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                             }}
-                            p
-                          >
+                            p>
                             {nft.desc}
                           </Text>
                           <Text
@@ -2755,8 +3074,7 @@ export default function Home() {
                               flexWrap: "wrap",
                               justifyContent: "space-between",
                               mb: "10px",
-                            }}
-                          >
+                            }}>
                             {nft.val}{" "}
                             <img
                               src="n2dr-logo.png"
@@ -2764,22 +3082,21 @@ export default function Home() {
                                 width: "60px",
                                 height: "25px",
                                 marginTop: "4px",
-                              }} />
+                              }}
+                            />
                           </Text>
                           {activeChain == "0x5" ? (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onPress={() => handleConfetti(buylistNft(nft))}
-                            >
+                              onPress={() => handleConfetti(buylistNft(nft))}>
                               Buy
                             </Button>
                           ) : (
                             <Button
                               color="gradient"
                               css={{ fontSize: "16px", minWidth: "100%" }}
-                              onClick={ethTest}
-                            >
+                              onClick={ethTest}>
                               Switch to Goerli
                             </Button>
                           )}
@@ -2790,17 +3107,25 @@ export default function Home() {
                 );
               })}
           </Grid.Container>
-        </Container><Spacer></Spacer><Container sm>
+        </Container>
+        <Spacer></Spacer>
+        <Container sm>
           <Row css={{ marginTop: "$3", marginBottom: "$3" }}>
             <Text css={{ mr: "15px" }} h3>
               Latest NFTs on
             </Text>
             <img
               src="ethereumlogo.png"
-              style={{ width: "190px", height: "45px", marginLeft: "4px" }} />
+              style={{ width: "45px", height: "45px", marginLeft: "4px" }}
+            />
+            <Text css={{ mr: "15px" }} h3>
+              Ethereum Network
+            </Text>
           </Row>
           <Grid.Container gap={1} justify="flex-start">
-            {!goenfts && <Loading type="gradient" size="xl" color="secondary" />}
+            {!goenfts && (
+              <Loading type="gradient" size="xl" color="secondary" />
+            )}
             {goenfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
             {goenfts &&
               goenfts.map((nft, i) => (
@@ -2813,13 +3138,13 @@ export default function Home() {
                     connectedWallet={connectedWallet}
                     chainId={"0x5"}
                     buyFunction={buyNewGoe}
-                    cancelFunction={goeCancelList} />
+                    cancelFunction={goeCancelList}
+                  />
                 </Grid>
               ))}
           </Grid.Container>
-        </Container></></>
-
-
-    
+        </Container> */}
+      </>
+    </>
   );
 }

@@ -51,25 +51,22 @@ function MyApp({ Component, pageProps }) {
               alignItems: "center",
               mb: "20px",
               "& > *": { width: "auto !important" },
-            }}
-          >
+            }}>
             <Col css={{ marginTop: "$8" }}>
               <Button
                 size="sm"
                 style={{
                   background: "#00000070",
                   boxShadow: "0px 0px 4px #ffffff",
-                }}
-              >
+                }}>
                 <Link href="/">
                   <a
                     style={{
                       fontFamily: "SF Pro Display",
                       fontWeight: "500",
                       color: "white",
-                      fontSize: "20px",
-                    }}
-                  >
+                      fontSize: "17px",
+                    }}>
                     MarketPlace
                   </a>
                 </Link>
@@ -82,17 +79,15 @@ function MyApp({ Component, pageProps }) {
                 style={{
                   background: "#00000070",
                   boxShadow: "0px 0px 4px #ffffff",
-                }}
-              >
+                }}>
                 <Link href="/collection">
                   <a
                     style={{
                       fontFamily: "SF Pro Display",
                       fontWeight: "500",
                       color: "white",
-                      fontSize: "20px",
-                    }}
-                  >
+                      fontSize: "17px",
+                    }}>
                     Collection
                   </a>
                 </Link>
@@ -105,17 +100,15 @@ function MyApp({ Component, pageProps }) {
                 style={{
                   background: "#00000070",
                   boxShadow: "0px 0px 4px #ffffff",
-                }}
-              >
+                }}>
                 <Link href="/create">
                   <a
                     style={{
                       fontFamily: "SF Pro Display",
                       fontWeight: "500",
                       color: "white",
-                      fontSize: "20px",
-                    }}
-                  >
+                      fontSize: "17px",
+                    }}>
                     Create Portal
                   </a>
                 </Link>
@@ -127,17 +120,15 @@ function MyApp({ Component, pageProps }) {
                 style={{
                   background: "#00000070",
                   boxShadow: "0px 0px 4px #ffffff",
-                }}
-              >
+                }}>
                 <Link href="/portal">
                   <a
                     style={{
                       fontFamily: "SF Pro Display",
                       fontWeight: "500",
                       color: "white",
-                      fontSize: "20px",
-                    }}
-                  >
+                      fontSize: "17px",
+                    }}>
                     My NFT Portal
                   </a>
                 </Link>

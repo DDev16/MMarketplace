@@ -1,4 +1,14 @@
-import { bscChain, polyChain, ethChain, hardChain, bscTest, ethTest, polyTest, flrChain } from "../engine/chainchange";
+/* eslint-disable @next/next/no-img-element */
+import {
+  bscChain,
+  polyChain,
+  ethChain,
+  hardChain,
+  bscTest,
+  ethTest,
+  polyTest,
+  flrChain,
+} from "../engine/chainchange";
 import "sf-font";
 import { Col, Dropdown } from "@nextui-org/react";
 import React from "react";
@@ -39,29 +49,84 @@ export default function ConnectChain() {
     var mum = "Mumbai";
     var bsct = "Bsctest";
     var goe = "Goerli";
-    var flr = "Flare"
+    var flr = "Flare";
     var hard = "Hardhat";
     var init = "Set Network";
     if (selectedValue == eth) {
-      return <img src="./ethereumlogo.png" width={"160px"} />;
+      return (
+        <div style={{ display: "flex", marginTop: "4%" }}>
+          <img
+            src="ethereumlogo.png"
+            width={"30px"}
+            height={"30px"}
+            style={{ marginTop: "4%" }}
+            alt="ethereum"
+          />
+          <h5>Ethereum Network</h5>
+        </div>
+      );
     } else if (selectedValue == bsc) {
-      return <img src="./bsc.png" width={"160px"} />;
+      return (
+        <div style={{ display: "flex", marginTop: "4%" }}>
+          <img
+            src="./bsc.png"
+            width={"25px"}
+            height={"25px"}
+            style={{ marginTop: "5%" }}
+            alt="ethereum"
+          />
+          <h5>Binance Network</h5>
+        </div>
+      );
     } else if (selectedValue == pol) {
-      return <img src="./polygonwhite.png" width={"160px"} />;
+      return (
+        <div style={{ display: "flex", marginTop: "4%" }}>
+          <img
+            src="./polygonwhite.png"
+            width={"25px"}
+            height={"25px"}
+            style={{ marginTop: "5%" }}
+            alt="ethereum"
+          />
+          <h5>Polygon Network</h5>
+        </div>
+      );
     } else if (selectedValue == mum) {
-      return <h3>Mumbai Testnet</h3>;
+      return <h5>Mumbai Testnet</h5>;
     } else if (selectedValue == bsct) {
-      return <h3>BSC Testnet</h3>;
+      return <h5>BSC Testnet</h5>;
     } else if (selectedValue == goe) {
-      return <h3>Goerli Testnet</h3>;
+      return <h5>Goerli Testnet</h5>;
     } else if (selectedValue == flr) {
-      return <img src="./flarelogo.png" width={"160px"} />;
+      return (
+        <div style={{ display: "flex", marginTop: "4%" }}>
+          <img
+            src="./flarelogo.png"
+            width={"25px"}
+            height={"25px"}
+            style={{ marginTop: "5%" }}
+            alt="flarelogo"
+          />
+          <h5>Flare Network</h5>
+        </div>
+      );
     } else if (selectedValue == hard) {
-      return <img src="./songbirdlogo.png" width={"160px"} />;
+      return (
+        <div style={{ display: "flex", marginTop: "4%" }}>
+          <img
+            src="./songbirdlogo.png"
+            width={"25px"}
+            height={"25px"}
+            style={{ marginTop: "5%" }}
+            alt="songbirdlogo"
+          />
+          <h5>Songbird Network</h5>
+        </div>
+      );
     } else if (selectedValue == init) {
       return (
-        <div className="mt-4">
-          <h3>Select Network</h3>
+        <div className="mt-8" style={{ paddingTop: "10px" }}>
+          <h5>Select Network</h5>
         </div>
       );
     }
@@ -108,12 +173,11 @@ export default function ConnectChain() {
             background: "#00000070",
             boxShadow: "0px 0px 4px #ffffff",
             fontFamily: "SF Pro Display",
-            fontWeight: "500",
+            fontWeight: "600",
             color: "white",
-            fontSize: "20px",
+            fontSize: "16px",
           }}
-          css={{ tt: "capitalize" }}
-        >
+          css={{ tt: "capitalize" }}>
           {blockImage}
         </Dropdown.Button>
         <Dropdown.Menu
@@ -126,34 +190,77 @@ export default function ConnectChain() {
           selectionMode="single"
           selectedKeys={selected}
           onSelectionChange={setSelected}
-          textValue={selected}
-        >
+          textValue={selected}>
           <Dropdown.Item textValue="Ethereum" key="Ethereum">
-            <img src="ethereumlogo.png" width={"110px"} />
+            <div style={{ display: "flex", marginTop: "4%" }}>
+              <img
+                src="ethereumlogo.png"
+                width={"25px"}
+                height={"25px"}
+                style={{ marginRight: "2%" }}
+                alt="ethereum"
+              />
+              <h5>Ethereum Network</h5>
+            </div>
           </Dropdown.Item>
           <Dropdown.Item
             textValue="Binance Smart Chain"
-            key="Binance Smart Chain"
-          >
-            <img src="bsc.png" width={"110px"} />
+            key="Binance Smart Chain">
+            <div style={{ display: "flex", marginTop: "4%" }}>
+              <img
+                src="bsc.png"
+                width={"25px"}
+                height={"25px"}
+                alt="bsc"
+                style={{ marginRight: "2%" }}
+              />
+              <h5>Binance Network</h5>
+            </div>
           </Dropdown.Item>
           <Dropdown.Item textValue="Polygon" key="Polygon">
-            <img src="polygonwhite.png" width={"110px"} />
+            <div style={{ display: "flex", marginTop: "4%" }}>
+              <img
+                src="polygonwhite.png"
+                width={"25px"}
+                height={"25px"}
+                alt="polygonwhite"
+                style={{ marginRight: "2%" }}
+              />
+              <h5>Polygon Network</h5>
+            </div>
           </Dropdown.Item>
           <Dropdown.Item textValue="Hardhat" key="Hardhat">
-            <img src="songbirdlogo.png" width={"110px"} />
+            <div style={{ display: "flex", marginTop: "4%" }}>
+              <img
+                src="songbirdlogo.png"
+                width={"25px"}
+                height={"25px"}
+                alt="songbirdlogo"
+                style={{ marginRight: "2%" }}
+              />
+              <h5>Songbird Network</h5>
+            </div>
           </Dropdown.Item>
           <Dropdown.Item textValue="Flare" key="Flare">
-          <img src="./flarelogo.png" width={"110px"} />
+            <div style={{ display: "flex", marginTop: "4%" }}>
+              <img
+                src="flarelogo.png"
+                width={"25px"}
+                height={"25px"}
+                alt="flarelogo"
+                style={{ marginRight: "2%" }}
+              />
+              <h5>Flare Network</h5>
+            </div>
           </Dropdown.Item>
           <Dropdown.Item textValue="Goerli" key="Goerli">
-            Goerli TestNet
+            <h5>Goerli </h5>
           </Dropdown.Item>
           <Dropdown.Item textValue="Bsctest" key="Bsctest">
-            BSC TestNet
+            <h5> TestNet</h5>
           </Dropdown.Item>
           <Dropdown.Item textValue="Mumbai" key="Mumbai">
-            Mumbai TestNet
+            <h5> Mumbai TestNet</h5>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

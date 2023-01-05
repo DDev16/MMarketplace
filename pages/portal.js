@@ -6,16 +6,18 @@ import Resell from "../engine/Resell.json";
 import NFTCollection from "../engine/NFTCollection.json";
 import NFT from "../engine/NFT.json";
 import Market from "../engine/Market.json";
-import { polyTest, ethTest, bscTest, flrChain } from "../engine/chainchange";
+import { polyTest, ethTest, bscTest, flrChain, polyChain, ethChain, bscChain } from "../engine/chainchange";
 import { Card, Button, Input, Col, Row, Spacer, Container, Text, Grid, } from "@nextui-org/react";
 import axios from "axios";
 import "sf-font";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
-import { mmnft, mmresell, mmnftcol, mmrpc, goemarket, mmmarket, bsctmarket, hhmarket } from "../engine/configuration";
-import { goenft, goeresell, goenftcol, goerpc } from "../engine/configuration";
-import { hhnft, hhresell, hhnftcol, hhrpc } from "../engine/configuration";
-import { bsctnft, bsctresell, bsctnftcol, bsctrpc } from "../engine/configuration";
+import { mmnft, mmresell, mmnftcol, mmrpc, mmmarket } from "../engine/configuration";
+import { goenft, goeresell, goenftcol, goerpc, goemarket } from "../engine/configuration";
+import { hhnft, hhresell, hhnftcol, hhrpc, hhmarket } from "../engine/configuration";
+import { bsctnft, bsctresell, bsctnftcol, bsctrpc, bsctmarket } from "../engine/configuration";
+import { bnbnft, bnbresell, bnbnftcol, bnbrpc, bnbmarket } from "../engine/configuration";
+import { polynft, polyresell, polynftcol, polyrpc, polymarket } from "../engine/configuration";
 import image from "../images/image.jpg";
 import LoadingPopup from "../components/LoadingPopup";
 import ListCard from "../components/ListCard";
@@ -45,6 +47,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var mainnet = goerpc;
@@ -54,6 +58,10 @@ export default function Sell() {
       var mainnet = bsctrpc;
     } else if (connected.chainId == hh) {
       var mainnet = hhrpc;
+    } else if (connected.chainId == bnb) {
+      var mainnet = bnbrpc;
+    } else if (connected.chainId == poly) {
+      var mainnet = polyrpc;
     }
     getRpc(mainnet);
     console.log(mainnet);
@@ -65,6 +73,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nftcol = goenftcol;
@@ -74,6 +84,10 @@ export default function Sell() {
       var nftcol = bsctnftcol;
     } else if (connected.chainId == hh) {
       var nftcol = hhnftcol;
+    } else if (connected.chainId == bnb) {
+      var nftcol = bnbnftcol;
+    } else if (connected.chainId == poly) {
+      var nftcol = polynftcol;
     }
     getNftCol(nftcol);
     console.log(nftcol);
@@ -85,6 +99,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nft = goenft;
@@ -94,6 +110,10 @@ export default function Sell() {
       var nft = bsctnft;
     } else if (connected.chainId == hh) {
       var nft = hhnft;
+    } else if (connected.chainId == bnb) {
+      var nft = bnbnft;
+    } else if (connected.chainId == poly) {
+      var nft = polynft;
     }
     getNftCustom(nft);
     console.log(nft);
@@ -105,6 +125,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nft = goemarket;
@@ -114,6 +136,8 @@ export default function Sell() {
       var nft = bsctmarket;
     } else if (connected.chainId == hh) {
       var nft = hhmarket;
+    } else if (connected.chainId == bnb) {
+      var nft = bnbmarket;
     }
     getMarket(nft);
     console.log(nft);
@@ -125,6 +149,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == hh) {
       var nftresell = hhresell;
@@ -134,6 +160,10 @@ export default function Sell() {
       var nftresell = mmresell;
     } else if (connected.chainId == bsct) {
       var nftresell = bsctresell;
+    }  else if (connected.chainId == bnb) {
+      var nftresell = bnbresell;
+    }  else if (connected.chainId == poly) {
+      var nftresell = polyresell;
     }
     getNftResell(nftresell);
     console.log(nftresell);
@@ -144,6 +174,8 @@ export default function Sell() {
     var goe = "0x5";
     var mm = "0x13881";
     var bsct = "0x61";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == hh) {
       var chainname = "Songbird";
@@ -153,6 +185,10 @@ export default function Sell() {
       var chainname = "Mumbai Testnet";
     } else if (connected.chainId == bsct) {
       var chainname = "BSC Testnet";
+    } else if (connected.chainId == bnb) {
+      var chainname = "Binance";
+    } else if (connected.chainId == poly) {
+      var chainname = "Polygon";
     }
     getChainName(chainname);
     console.log(chainname);
@@ -352,15 +388,15 @@ export default function Sell() {
                 </Text>
                 <Button
                   size="sm"
-                  onPress={polyTest}
+                  onPress={polyChain}
                   css={{ marginRight: "$2" }}
                 >
                   <img src="polygonwhite.png" width={"100px"} />
                 </Button>
-                <Button size="sm" onPress={bscTest} css={{ marginRight: "$2" }}>
+                <Button size="sm" onPress={bscChain} css={{ marginRight: "$2" }}>
                   <img src="bsc.png" width={"100px"} />
                 </Button>
-                <Button size="sm" onPress={ethTest}>
+                <Button size="sm" onPress={ethChain}>
                   <img src="ethereumlogo.png" width={"100px"} />
                 </Button>
               </Row>
@@ -556,7 +592,7 @@ export default function Sell() {
                     signer
                   );
 
-                  if (chain !== ("Mumbai Testnet" && "Songbird")) {
+                  if (chain !== ("Mumbai Testnet" && "Songbird" )) {
                     await contractnft
                       .setApprovalForAll(address, true)
                       .then(async (res) => {

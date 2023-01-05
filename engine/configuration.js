@@ -5,12 +5,12 @@ export const client = new NFTStorage({
 });
 
 /*
-Songbird Testnet
+Songbird Testnet ---updated addresses 
 */
-export var hhresell = "0x02d6480848a386384A00FDE469D5C10926E51C67";
-export var hhnftcol = "0x7B6fF7a51a62f6F9dAc586aF1011A973288dEF61";
-export var hhnft = "0xD5d496aa89f94D06c8605aDCd38eD3CA896Df6Fa";
-export var hhmarket = "0xa6BFbefB1FC536b0825eD11996CF148C24054582";
+export var hhresell = "0x95bE842Cd440e8aA9d5bD93Ec12330c436e5D273";
+export var hhnftcol = "0xEbeB6f34ABFe1BB09F22446a34A489ff97c70411";
+export var hhnft = "0xB72381461f81E4DbF27eAa883E805a0757576eF7";
+export var hhmarket = "0x2Cc9701f59fF7CAe2bad43C8c933A725816157b6";
 export var hhrpc = "https://songbird.towolabs.com/rpc";
 
 /*
@@ -33,23 +33,23 @@ export var ethmarket = "0x56A7BE395206d86520a326E761DE551A827013DA";
 export var ethrpc = "https://rpc.ankr.com/eth_goerli";
 
 /*
-Binance Mainnet
+Binance Mainnet -- updated addresses 
 */
-export var bnbresell = "0x7aBFb92BBF795B22796B2C86709b4b40E9E90e95";
-export var bnbnftcol = "0x7634E8176bd3D6156dB154bf4df237ca184b6C9f";
-export var bnbnft = "0x60e6959a8652996D835055813A8b8c02FCa3E2E0";
-export var bnbmarket = "0xfC5583Bb036698cCda08199a4c8D291d76fAbffB";
-export var bnbrpc = "https://data-seed-prebsc-1-s3.binance.org:8545/";
+export var bnbresell = "0xc7A30d15Fe24032b8b700c0dCf71400Df3b92970";
+export var bnbnftcol = "0x382d4b1e396c6666640cc628b89ee0f5aec14994";
+export var bnbnft = "0x51A1c8956c038699423ab7A0726d7311c81f6F8f";
+export var bnbmarket = "0x33B3E5cF732CeE31a5f59243a54C490b90e9997F";
+export var bnbrpc = "https://bsc-dataseed2.defibit.io";
 
 
 /*
 Polygon Mainnet
 */
-export var polyresell = "0x935feEaA1e4959C7DeB9C3AF0B3B75C2b7e09d70";
-export var polynftcol = "0x65f4643394437E0D27a151AB6e0ebbd72019089F";
-export var polynft = "0x3dea30E978E8D042FdA3FF468665b0fd36720fBb";
-export var polymarket = "0x2C35b5366011fa9B3531fef52d8D21c575153c0A";
-export var polyrpc = "https://matic-mumbai.chainstacklabs.com";
+export var polyresell = "0xc7A30d15Fe24032b8b700c0dCf71400Df3b92970";
+export var polynftcol = "0x382D4B1e396c6666640Cc628B89Ee0f5Aec14994";
+export var polynft = "0x51A1c8956c038699423ab7A0726d7311c81f6F8f";
+export var polymarket = "0x33B3E5cF732CeE31a5f59243a54C490b90e9997F";
+export var polyrpc = "https://polygon.llamarpc.com";
 
 
 /*

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { ethers } from "ethers";
 import { goerpc, goeresell, goenftcol, bsctrpc, bsctresell, bsctnftcol, mmrpc, mmresell, mmnftcol, hhnftcol, hhrpc, hhresell,} from "../engine/configuration";
+import { bnbrpc, bnbresell, bnbnftcol } from "../engine/configuration";
+import { polyrpc, polyresell, polynftcol } from "../engine/configuration";
 import { simpleCrypto } from "../engine/configuration";
 import NFTCollection from "../engine/NFTCollection.json";
 import Resell from "../engine/Resell.json";
@@ -258,9 +260,10 @@ const Collection = () => {
   const setContract = () => {
     var goe = "0xE"; // Flare conversion 
     var mm = "0x13881";
-    var bsct = "0x61";
+    var bsct = "0x61"; 
     var hh = "0x13"; //songbird conversion
-
+    var bnb = "0x38"; 
+    var poly = "0x89";
     if (activeChain == goe) {
       var nftcol = goenftcol;
       var nftrpc = goerpc;
@@ -277,6 +280,14 @@ const Collection = () => {
       var nftcol = hhnftcol;
       var nftrpc = hhrpc;
       var nftresell = hhresell;
+    } else if (activeChain == bnb) {
+      var nftcol = bnbnftcol;
+      var nftrpc = bnbrpc;
+      var nftresell = bnbresell;
+    } else if (activeChain == poly) {
+      var nftcol = polynftcol;
+      var nftrpc = polyrpc;
+      var nftresell = polyresell;
     }
     setContractConfig({
       nftCol: nftcol,

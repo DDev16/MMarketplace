@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import "sf-font";
 import { Text, Row, Spacer, Container, Col, Grid } from "@nextui-org/react";
 import Link from "next/link";
@@ -62,8 +63,7 @@ export default function Footer() {
                       textShadow: "-0px 0px 3px #ffffff",
                       fontFamily: "SF Pro Display",
                       fontWeight: "700",
-                    }}
-                  >
+                    }}>
                     Monsters NFT Inc: Connect Everything
                   </Text>
                 </Link>
@@ -73,8 +73,7 @@ export default function Footer() {
                     color: "#fff",
                     fontSmooth: "always",
                     fontFamily: "SF Pro Display",
-                  }}
-                >
+                  }}>
                   The blockchain agnostic marketplace. The token with endless
                   posibilities. NFTs are more than just art. Its meant to change
                   the way humans establish ownership of an asset beyond paper.
@@ -96,8 +95,7 @@ export default function Footer() {
                           src={item.img}
                           style={{ marginRight: "1px" }}
                           width="150px"
-                          height="50px"
-                        ></img>
+                          height="50px"></img>
                       </a>
                     );
                   })}
@@ -115,10 +113,9 @@ export default function Footer() {
                       <img
                         src={item.img}
                         style={{ marginRight: "5px" }}
-                        width="150px"
+                        width="50px"
                         height="50px"
-                        key={item.id}
-                      ></img>
+                        key={item.id}></img>
                     );
                   })}
                 </Text>

@@ -6,7 +6,8 @@ import NFT from "../engine/NFT.json";
 import Market from "../engine/Market.json";
 import { mmnft, mmmarket, hhnft, hhmarket } from "../engine/configuration";
 import { goenft, goemarket, flrnft, flrmarket } from "../engine/configuration";
-// import { hhnft, hhmarket } from "../engine/configuration";
+import { polynft, polymarket } from "../engine/configuration";
+import { bnbnft, bnbmarket } from "../engine/configuration";
 import { bsctnft, bsctmarket } from "../engine/configuration";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { Card, Button, Input, Col, Row, Spacer, Container, Text, Loading, Grid } from "@nextui-org/react";
@@ -74,6 +75,9 @@ export default function CreateMarket() {
     var mm = "0x13881";
     var bsct = "0x61";
     var flr = "0xE";
+    var eth = "0x1";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nftcontract = goenft;
@@ -85,6 +89,10 @@ export default function CreateMarket() {
       var nftcontract = hhnft;
     } else if (connected.chainId == flr) {
       var nftcontract = flrnft;
+    } else if (connected.chainId == bnb) {
+      var nftcontract = bnbnft;
+    } else if (connected.chainId == poly) {
+      var nftcontract = polynft;
     }
     getNft(nftcontract.toLowerCase());
     console.log(nftcontract.toLowerCase());
@@ -97,6 +105,8 @@ export default function CreateMarket() {
     var mm = "0x13881";
     var bsct = "0x61";
     var flr = "0xE";
+    var bnb = "0x38";
+    var poly = "0x89";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var market = goemarket;
@@ -108,6 +118,10 @@ export default function CreateMarket() {
       var market = hhmarket;
     }  else if (connected.chainId == flr) {
       var market = flrmarket;
+    } else if (connected.chainId == bnb) {
+      var market = bnbmarket;
+    } else if (connected.chainId == poly) {
+      var market = polymarket;
     }
     getMarket(market);
     console.log(market);
@@ -120,7 +134,7 @@ export default function CreateMarket() {
     const signer = provider.getSigner();
     let contract = new ethers.Contract(nftcontract, NFT, signer);
     let transaction = await contract
-      .createNFT(url, { gasPrice: "30000000000", value: "7500000000000000" })
+      .createNFT(url, { gasPrice: "40000000000", value: "7500000000000000" })
       .catch((err) => {
         setVisible(false);
         console.log("err", err.message);
@@ -303,7 +317,7 @@ export default function CreateMarket() {
                           : false
                       }
                     >
-                      List your NFT!
+                      Mint/List your NFT!
                     </Button>
                     <Button
                       aria-label="mint"
@@ -347,7 +361,7 @@ export default function CreateMarket() {
             <Card css={{ marginTop: "$5" }}>
               <Card.Body style={{ backgroundColor: "#00000040" }}>
                 <Text>
-                  Chain-Agnostic Marketplace that allows you to sell your NFT
+                  Monsters Marketplace allows you to sell your NFT
                   and accept your favorite crypto as payment! No borders, No
                   restrictions. Simple!
                 </Text>

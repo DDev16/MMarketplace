@@ -46,7 +46,7 @@ export async function polyChain() {
                             symbol: 'MATIC',
                             decimals: 18,
                         },
-                        rpcUrls: ['https://matic-mainnet.chainstacklabs.com'],
+                        rpcUrls: ['https://polygon.llamarpc.com'],
                         blockExplorerUrls: ['https://polygonscan.com/'],
                     }]
                 })
