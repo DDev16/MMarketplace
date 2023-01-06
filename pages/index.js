@@ -100,12 +100,16 @@ export default function Home() {
   const [activeChain, setActiveChain] = useState(null);
   const [visible, setVisible] = useState(false);
   const [allNfts, setAllNfts] = useState(null);
+  const [nftNameSearchState, setNftNameSearchState] = useState(false);
+  const [nftNameSearchArray, setNftNameSearchArray] = useState([]);
 
   const [ethereumNftShow, setEthereumNftShow] = useState(true);
   const [binanceNftShow, setBinanceNftShow] = useState(false);
   const [polygonNftShow, setPolygonNftShow] = useState(false);
   const [flareNftShow, setFlareNftShow] = useState(false);
   const [songbirdNftShow, setSongbirdNftShow] = useState(false);
+
+  
 
   const sliderImgArray = [
     {
@@ -139,6 +143,7 @@ export default function Home() {
   ];
 
   const networkSelect = (e) => {
+    setNftNameSearchState(false);
     if (e === "Ethereum") {
       setEthereumNftShow(true);
       setBinanceNftShow(false);
@@ -169,6 +174,61 @@ export default function Home() {
       setPolygonNftShow(false);
       setFlareNftShow(false);
       setSongbirdNftShow(true);
+    }
+  };
+
+  const searchNftFunc = (e) => {
+    setNftNameSearchState(true);
+    if (ethereumNftShow) {
+      let nftNameFilterArray = [];
+      nftNameFilterArray = ethnfts.filter((nftArray) =>
+        nftArray.name.toLowerCase().includes(e.toLowerCase())
+          ? ethnfts
+          : e === ""
+          ? ethnfts
+          : ""
+      );
+      setNftNameSearchArray(nftNameFilterArray);
+    } else if (binanceNftShow) {
+      let nftNameFilterArray = [];
+      nftNameFilterArray = bnbnfts.filter((nftArray) =>
+        nftArray.name.toLowerCase().includes(e.toLowerCase())
+          ? bnbnfts
+          : e === ""
+          ? bnbnfts
+          : ""
+      );
+      setNftNameSearchArray(nftNameFilterArray);
+    } else if (polygonNftShow) {
+      let nftNameFilterArray = [];
+      nftNameFilterArray = polynfts.filter((nftArray) =>
+        nftArray.name.toLowerCase().includes(e.toLowerCase())
+          ? polynfts
+          : e === ""
+          ? polynfts
+          : ""
+      );
+      setNftNameSearchArray(nftNameFilterArray);
+    } else if (flareNftShow) {
+      let nftNameFilterArray = [];
+      nftNameFilterArray = flrnfts.filter((nftArray) =>
+        nftArray.name.toLowerCase().includes(e.toLowerCase())
+          ? flrnfts
+          : e === ""
+          ? flrnfts
+          : ""
+      );
+      setNftNameSearchArray(nftNameFilterArray);
+    } else if (songbirdNftShow) {
+      let nftNameFilterArray = [];
+      nftNameFilterArray = hhnfts.filter((nftArray) =>
+        nftArray.name.toLowerCase().includes(e.toLowerCase())
+          ? hhnfts
+          : e === ""
+          ? hhnfts
+          : ""
+      );
+      setNftNameSearchArray(nftNameFilterArray);
     }
   };
 
@@ -1696,6 +1756,7 @@ export default function Home() {
                 padding: "5px",
                 borderRadius: "8px",
               }}
+              onChange={(e) => searchNftFunc(e.target.value)}
             />
           </div>
         </Container>
@@ -1715,10 +1776,17 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!flrlist && (
-                  <Loading type="gradient" size="xl" color="secondary" />
-                )}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  {!flrlist && (
+                    <Loading type="gradient" size="xl" color="secondary" />
+                  )}
                 {flrlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                </div>
                 {flrlist &&
                   flrlist.map((nft, id) => {
                     async function buylistNft() {
@@ -1858,10 +1926,37 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!flrnfts && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>                
+                  {!flrnfts && (
                   <Loading type="gradient" size="xl" color="secondary" />
                 )}
                 {flrnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
+                </div>
+                <>
+                  {nftNameSearchState ? (
+                    <>
+                      {nftNameSearchArray.map((nft, i) => (
+                        <Grid xs={12} sm={4} md={3} key={i}>
+                          <BuyCard
+                            nft={nft}
+                            activeChain={activeChain}
+                            networkSwitch={flrChain}
+                            chain={"Flare"}
+                            connectedWallet={connectedWallet}
+                            chainId={"0xE"}
+                            buyFunction={buyNewFlr}
+                            cancelFunction={flrCancelList}
+                          />
+                        </Grid>
+                      ))}
+                    </>
+                  ) : (
+                    <>
                 {flrnfts &&
                   flrnfts.map((nft, i) => (
                     <Grid xs={12} sm={4} md={3} key={i}>
@@ -1874,15 +1969,16 @@ export default function Home() {
                         chainId={"0xE"}
                         buyFunction={buyNewFlr}
                         cancelFunction={flrCancelList}
-                      />
-                    </Grid>
-                  ))}
-              </Grid.Container>
-             
-            </Container>
-            
-          </>
-        )}
+                        />
+                        </Grid>
+                      ))}
+                  </>
+                )}
+              </>
+            </Grid.Container>
+          </Container>
+        </>
+      )}
         {songbirdNftShow && (
           <>
             <Container sm>
@@ -1897,10 +1993,17 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
                 {!hhlist && (
                   <Loading type="gradient" size="xl" color="secondary" />
                 )}
                 {hhlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                </div>
                 {hhlist &&
                   hhlist.map((nft, id) => {
                     async function buylistNft() {
@@ -2040,25 +2143,56 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!hhnfts && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                                    {!hhnfts && (
                   <Loading type="gradient" size="xl" color="secondary" />
                 )}
                 {hhnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-                {hhnfts &&
-                  hhnfts.map((nft, i) => (
-                    <Grid xs={12} sm={4} md={3} key={i}>
-                      <BuyCard
-                        nft={nft}
-                        activeChain={activeChain}
-                        networkSwitch={hardChain}
-                        chain={"Songbird"}
-                        connectedWallet={connectedWallet}
-                        chainId={"0x13"}
-                        buyFunction={buyNewHH}
-                        cancelFunction={hhCancelList}
-                      />
-                    </Grid>
-                  ))}
+                </div>
+                <>
+                  {nftNameSearchState ? (
+                    <>
+                      {nftNameSearchArray.map((nft, i) => (
+                        <Grid xs={12} sm={4} md={3} key={i}>
+                          <BuyCard
+                            nft={nft}
+                            activeChain={activeChain}
+                            networkSwitch={hardChain}
+                            chain={"Songbird"}
+                            connectedWallet={connectedWallet}
+                            chainId={"0x13"}
+                            buyFunction={buyNewHH}
+                            cancelFunction={hhCancelList}
+                          />
+                        </Grid>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+
+                      {hhnfts &&
+                        hhnfts.map((nft, i) => (
+                          <Grid xs={12} sm={4} md={3} key={i}>
+                            <BuyCard
+                              nft={nft}
+                              activeChain={activeChain}
+                              networkSwitch={hardChain}
+                              chain={"Songbird"}
+                              connectedWallet={connectedWallet}
+                              chainId={"0x13"}
+                              buyFunction={buyNewHH}
+                              cancelFunction={hhCancelList}
+                            />
+                          </Grid>
+                        ))}
+                    </>
+                  )}
+                </>
               </Grid.Container>
             </Container>
           </>
@@ -2080,10 +2214,16 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!bnblist && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>                {!bnblist && (
                   <Loading type="gradient" size="xl" color="secondary" />
                 )}
                 {bnblist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                </div>
                 {bnblist &&
                   bnblist.map((nft, id) => {
                     async function buylistNft() {
@@ -2225,25 +2365,56 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!bnbnfts && (
-                  <Loading type="gradient" size="xl" color="secondary" />
-                )}
-                {bnbnfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-                {bnbnfts &&
-                  bnbnfts.map((nft, i) => (
-                    <Grid xs={12} sm={4} md={3} key={i}>
-                      <BuyCard
-                        nft={nft}
-                        activeChain={activeChain}
-                        networkSwitch={bscChain}
-                        chain={"Binance"}
-                        connectedWallet={connectedWallet}
-                        chainId={"0x38"}
-                        buyFunction={buyNewBnb}
-                        cancelFunction={bnbCancelList}
-                      />
-                    </Grid>
-                  ))}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  {!bnbnfts && (
+                    <Loading type="gradient" size="xl" color="secondary" />
+                  )}
+                  {bnbnfts?.length == 0 && <Text h5>No NFTs Listed. </Text>}
+                  
+                </div>
+                <>
+                  {nftNameSearchState ? (
+                    <>
+                      {nftNameSearchArray.map((nft, i) => (
+                        <Grid xs={12} sm={4} md={3} key={i}>
+                          <BuyCard
+                            nft={nft}
+                            activeChain={activeChain}
+                            networkSwitch={bscChain}
+                            chain={"Binance"}
+                            connectedWallet={connectedWallet}
+                            chainId={"0x38"}
+                            buyFunction={buyNewBnb}
+                            cancelFunction={bnbCancelList}
+                          />
+                        </Grid>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {bnbnfts &&
+                        bnbnfts.map((nft, i) => (
+                          <Grid xs={12} sm={4} md={3} key={i}>
+                            <BuyCard
+                              nft={nft}
+                              activeChain={activeChain}
+                              networkSwitch={bscChain}
+                              chain={"Binance"}
+                              connectedWallet={connectedWallet}
+                              chainId={"0x38"}
+                              buyFunction={buyNewBnb}
+                              cancelFunction={bnbCancelList}
+                            />
+                          </Grid>
+                        ))}
+                    </>
+                  )}
+                </>
               </Grid.Container>
             </Container>
           </>
@@ -2265,10 +2436,17 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!polylist && (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>               
+                   {!polylist && (
                   <Loading type="gradient" size="xl" color="secondary" />
                 )}
                 {polylist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                </div>
                 {polylist &&
                   polylist.map((nft, id) => {
                     async function buylistNft() {
@@ -2407,28 +2585,61 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!polynfts && (
-                  <Loading type="gradient" size="xl" color="secondary" />
-                )}
-                {polynfts?.length == 0 && <Text h4>No NFTs Listed. </Text>}
-                {polynfts &&
-                  polynfts.map(
-                    (nft, i) =>
-                      nft && (
-                        <Grid xs={12} sm={4} md={3} key={i}>
-                          <BuyCard
-                            nft={nft}
-                            activeChain={activeChain}
-                            networkSwitch={polyChain}
-                            chain={"Polygon"}
-                            connectedWallet={connectedWallet}
-                            chainId={"0x89"}
-                            buyFunction={buyNewPoly}
-                            cancelFunction={polyCancelList}
-                          />
-                        </Grid>
-                      )
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  {!polynfts && (
+                    <Loading type="gradient" size="xl" color="secondary" />
                   )}
+                  {polynfts?.length == 0 && <Text h5>No NFTs Listed. </Text>}
+                </div>
+                <>
+                  {nftNameSearchState ? (
+                    <>
+                      {nftNameSearchArray.map(
+                        (nft, i) =>
+                          nft && (
+                            <Grid xs={12} sm={4} md={3} key={i}>
+                              <BuyCard
+                                nft={nft}
+                                activeChain={activeChain}
+                                networkSwitch={polyChain}
+                                chain={"Polygon"}
+                                connectedWallet={connectedWallet}
+                                chainId={"0x89"}
+                                buyFunction={buyNewPoly}
+                                cancelFunction={polyCancelList}
+                              />
+                            </Grid>
+                          )
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {polynfts &&
+                        polynfts.map(
+                          (nft, i) =>
+                            nft && (
+                              <Grid xs={12} sm={4} md={3} key={i}>
+                                <BuyCard
+                                  nft={nft}
+                                  activeChain={activeChain}
+                                  networkSwitch={polyChain}
+                                  chain={"Polygon"}
+                                  connectedWallet={connectedWallet}
+                                  chainId={"0x89"}
+                                  buyFunction={buyNewPoly}
+                                  cancelFunction={polyCancelList}
+                                />
+                              </Grid>
+                            )
+                        )}
+                    </>
+                  )}
+                </>
               </Grid.Container>
             </Container>
           </>
@@ -2450,10 +2661,17 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!ethlist && (
-                  <Loading type="gradient" size="xl" color="secondary" />
-                )}
-                {ethlist?.length == 0 && <Text h4>No NFTs ReListed. </Text>}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  {!ethlist && (
+                    <Loading type="gradient" size="xl" color="secondary" />
+                  )}
+                  {ethlist?.length == 0 && <Text h5>No NFTs ReListed. </Text>}
+                </div>
                 {ethlist &&
                   ethlist.map((nft, id) => {
                     async function buylistNft() {
@@ -2593,24 +2811,52 @@ export default function Home() {
                 </Text>
               </Row>
               <Grid.Container gap={1} justify="flex-start">
-                {!ethnfts && (
-                  <Loading type="gradient" size="xl" color="secondary" />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                  {!ethnfts && (
+                    <Loading type="gradient" size="xl" color="secondary" />
+                  )}
+                </div>
+                {nftNameSearchState ? (
+                  <>
+                    {nftNameSearchArray.map((nft, i) => (
+                      <Grid xs={12} sm={4} md={3} key={i}>
+                        <BuyCard
+                          nft={nft}
+                          activeChain={activeChain}
+                          networkSwitch={ethChain}
+                          chain={"Ethereum"}
+                          connectedWallet={connectedWallet}
+                          chainId={"0x1"}
+                          buyFunction={buyNewGoe}
+                          cancelFunction={goeCancelList}
+                        />
+                      </Grid>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    {ethnfts &&
+                      ethnfts.map((nft, i) => (
+                        <Grid xs={12} sm={4} md={3} key={i}>
+                          <BuyCard
+                            nft={nft}
+                            activeChain={activeChain}
+                            networkSwitch={ethChain}
+                            chain={"Ethereum"}
+                            connectedWallet={connectedWallet}
+                            chainId={"0x1"}
+                            buyFunction={buyNewGoe}
+                            cancelFunction={goeCancelList}
+                          />
+                        </Grid>
+                      ))}
+                  </>
                 )}
-                {ethnfts &&
-                  ethnfts.map((nft, i) => (
-                    <Grid xs={12} sm={4} md={3} key={i}>
-                      <BuyCard
-                        nft={nft}
-                        activeChain={activeChain}
-                        networkSwitch={ethChain}
-                        chain={"Ethereum"}
-                        connectedWallet={connectedWallet}
-                        chainId={"0x1"}
-                        buyFunction={buyNewGoe}
-                        cancelFunction={goeCancelList}
-                      />
-                    </Grid>
-                  ))}
               </Grid.Container>
             </Container>
           </>
