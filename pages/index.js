@@ -1624,12 +1624,13 @@ export default function Home() {
 
   return (
     <>
+    
       <div>
         <div>
           <Container
             xl
             css={{
-              backgroundImage: "url(./8e145599d4847e339828787162952035.gif)",
+              backgroundImage: "url(./MonsterDaddy_dr_suess_trippy_wall_paper_world_with_cute_and_ado_7f07fe86-3fb5-4b93-acda-349c66a2d77b.png)",
               backgroundSize: "cover",
             }}
           >
@@ -1663,19 +1664,7 @@ export default function Home() {
               >
                 🔥 Top NFT's 🔥
               </Text>
-              <div style={{ textAlign: "center", minHeight: "100px" }}>
-                <audio controls style={{ color: "blue" }}>
-                  <source
-                    src="./public/Avicii.mp3"
-                    type="audio/mpeg"
-                  />
-                  <source
-                    src="./public/Avicii.mp3"
-                    type="audio/ogg"
-                  />
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
+              
               {sliderImgArray && (
                 <Carousel
                   swipeable={true}
@@ -1695,7 +1684,7 @@ export default function Home() {
                   itemAriaLabel="abcd"
                   className="SliderWrapper"
                 >
-                  {allNfts.map((nft, i) => (
+                  {sliderImgArray.map((nft, i) => (
                     <div
                       key={i}
                       style={{
@@ -1713,7 +1702,7 @@ export default function Home() {
                           objectPosition: "cover",
                           paddingBottom: "5%",
                         }}
-                        src={nft.image}
+                        src={nft.thumb}
                       />
                     </div>
                   ))}
@@ -1724,6 +1713,19 @@ export default function Home() {
         </div>
       </div>
       <>
+      <div style={{ textAlign: "center", minHeight: "100px" }}>
+                <audio controls style={{ color: "blue" }}>
+                  <source
+                    src="./public/Avicii.mp3"
+                    type="audio/mpeg"
+                  />
+                  <source
+                    src="./public/Avicii.mp3"
+                    type="audio/ogg"
+                  />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
         <Container sm>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <select

@@ -5,6 +5,8 @@ import { Button, Col, Row, Container } from "@nextui-org/react";
 import Footer from "./footer";
 import ConnectChain from "../engine/connectchain";
 import { SSRProvider } from "react-bootstrap";
+import React from 'react'
+import Widget from './widget.js'
 
 const theme = createTheme({
   type: "dark",
@@ -145,6 +147,8 @@ function MyApp({ Component, pageProps }) {
         <Footer>
           <Footer />
         </Footer>
+        <Widget />
+        
       </div>
     </SSRProvider>
   );

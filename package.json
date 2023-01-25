@@ -12,6 +12,7 @@
     "@metamask/detect-provider": "^1.2.0",
     "@nextui-org/react": "^1.0.0-beta.10",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@widgetbot/react-embed": "^1.6.1",
     "axios": "^0.27.2",
     "canvas-confetti": "^1.5.1",
     "chai": "^4.3.6",
