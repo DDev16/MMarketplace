@@ -7,10 +7,10 @@ export const client = new NFTStorage({
 /*
 Songbird Testnet ---updated addresses 
 */
-export var hhresell = "0x95bE842Cd440e8aA9d5bD93Ec12330c436e5D273";
-export var hhnftcol = "0xEbeB6f34ABFe1BB09F22446a34A489ff97c70411";
-export var hhnft = "0xB72381461f81E4DbF27eAa883E805a0757576eF7";
-export var hhmarket = "0x2Cc9701f59fF7CAe2bad43C8c933A725816157b6";
+export var hhresell = "0x4A06Ef3E49B890CD7224C813333950A5842ec3f1";
+export var hhnftcol = "0x81D80d8A8ccBB761b74be2D6F969b16a498e4c73";
+export var hhnft = "0xf3ad4b303588E4Dd555b440CA8F5B6782e8C4ce0";
+export var hhmarket = "0x5596C609dd6843411e97a832389f58CD861618e1";
 export var hhrpc = "https://songbird.towolabs.com/rpc";
 
 /*
@@ -39,7 +39,7 @@ export var bnbresell = "0xc7A30d15Fe24032b8b700c0dCf71400Df3b92970";
 export var bnbnftcol = "0x382d4b1e396c6666640cc628b89ee0f5aec14994";
 export var bnbnft = "0x51A1c8956c038699423ab7A0726d7311c81f6F8f";
 export var bnbmarket = "0x33B3E5cF732CeE31a5f59243a54C490b90e9997F";
-export var bnbrpc = "https://bsc-dataseed2.defibit.io";
+export var bnbrpc = "https://bsc-dataseed1.defibit.io";
 
 
 /*

@@ -6,18 +6,79 @@ import Resell from "../engine/Resell.json";
 import NFTCollection from "../engine/NFTCollection.json";
 import NFT from "../engine/NFT.json";
 import Market from "../engine/Market.json";
-import { polyTest, ethTest, bscTest, flrChain, polyChain, ethChain, bscChain } from "../engine/chainchange";
-import { Card, Button, Input, Col, Row, Spacer, Container, Text, Grid, } from "@nextui-org/react";
+import {
+  polyTest,
+  ethTest,
+  bscTest,
+  flrChain,
+  polyChain,
+  ethChain,
+  bscChain,
+} from "../engine/chainchange";
+import {
+  Card,
+  Button,
+  Input,
+  Col,
+  Row,
+  Spacer,
+  Container,
+  Text,
+  Grid,
+} from "@nextui-org/react";
 import axios from "axios";
 import "sf-font";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
-import { mmnft, mmresell, mmnftcol, mmrpc, mmmarket } from "../engine/configuration";
-import { goenft, goeresell, goenftcol, goerpc, goemarket } from "../engine/configuration";
-import { hhnft, hhresell, hhnftcol, hhrpc, hhmarket } from "../engine/configuration";
-import { bsctnft, bsctresell, bsctnftcol, bsctrpc, bsctmarket } from "../engine/configuration";
-import { bnbnft, bnbresell, bnbnftcol, bnbrpc, bnbmarket } from "../engine/configuration";
-import { polynft, polyresell, polynftcol, polyrpc, polymarket } from "../engine/configuration";
+import {
+  mmnft,
+  mmresell,
+  mmnftcol,
+  mmrpc,
+  mmmarket,
+} from "../engine/configuration";
+import {
+  goenft,
+  goeresell,
+  goenftcol,
+  goerpc,
+  goemarket,
+} from "../engine/configuration";
+import {
+  hhnft,
+  hhresell,
+  hhnftcol,
+  hhrpc,
+  hhmarket,
+} from "../engine/configuration";
+import {
+  bsctnft,
+  bsctresell,
+  bsctnftcol,
+  bsctrpc,
+  bsctmarket,
+} from "../engine/configuration";
+import {
+  bnbnft,
+  bnbresell,
+  bnbnftcol,
+  bnbrpc,
+  bnbmarket,
+} from "../engine/configuration";
+import {
+  polynft,
+  polyresell,
+  polynftcol,
+  polyrpc,
+  polymarket,
+} from "../engine/configuration";
+import {
+  flrnft,
+  flrresell,
+  flrnftcol,
+  flrrpc,
+  flrmarket,
+} from "../engine/configuration";
 import image from "../images/image.jpg";
 import LoadingPopup from "../components/LoadingPopup";
 import ListCard from "../components/ListCard";
@@ -49,6 +110,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var mainnet = goerpc;
@@ -62,6 +124,8 @@ export default function Sell() {
       var mainnet = bnbrpc;
     } else if (connected.chainId == poly) {
       var mainnet = polyrpc;
+    } else if (connected.chainId == flr) {
+      var mainnet = flrrpc;
     }
     getRpc(mainnet);
     console.log(mainnet);
@@ -75,6 +139,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nftcol = goenftcol;
@@ -88,6 +153,8 @@ export default function Sell() {
       var nftcol = bnbnftcol;
     } else if (connected.chainId == poly) {
       var nftcol = polynftcol;
+    } else if (connected.chainId == flr) {
+      var nftcol = flrnftcol;
     }
     getNftCol(nftcol);
     console.log(nftcol);
@@ -101,6 +168,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nft = goenft;
@@ -114,6 +182,8 @@ export default function Sell() {
       var nft = bnbnft;
     } else if (connected.chainId == poly) {
       var nft = polynft;
+    } else if (connected.chainId == flr) {
+      var nft = flrnft;
     }
     getNftCustom(nft);
     console.log(nft);
@@ -127,6 +197,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == goe) {
       var nft = goemarket;
@@ -138,6 +209,10 @@ export default function Sell() {
       var nft = hhmarket;
     } else if (connected.chainId == bnb) {
       var nft = bnbmarket;
+    } else if (connected.chainId == poly) {
+      var nft = polymarket;
+    } else if (connected.chainId == flr) {
+      var nft = flrmarket;
     }
     getMarket(nft);
     console.log(nft);
@@ -151,6 +226,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == hh) {
       var nftresell = hhresell;
@@ -160,10 +236,12 @@ export default function Sell() {
       var nftresell = mmresell;
     } else if (connected.chainId == bsct) {
       var nftresell = bsctresell;
-    }  else if (connected.chainId == bnb) {
+    } else if (connected.chainId == bnb) {
       var nftresell = bnbresell;
-    }  else if (connected.chainId == poly) {
+    } else if (connected.chainId == poly) {
       var nftresell = polyresell;
+    } else if (connected.chainId == flr) {
+      var nftresell = flrresell;
     }
     getNftResell(nftresell);
     console.log(nftresell);
@@ -176,6 +254,7 @@ export default function Sell() {
     var bsct = "0x61";
     var bnb = "0x38";
     var poly = "0x89";
+    var flr = "0xe";
     const connected = await detectEthereumProvider();
     if (connected.chainId == hh) {
       var chainname = "Songbird";
@@ -189,6 +268,8 @@ export default function Sell() {
       var chainname = "Binance";
     } else if (connected.chainId == poly) {
       var chainname = "Polygon";
+    } else if (connected.chainId == flr) {
+      var chainname = "Flare";
     }
     getChainName(chainname);
     console.log(chainname);
@@ -225,10 +306,7 @@ export default function Sell() {
         const Uri = Promise.resolve(rawUri);
         const getUri = Uri.then((value) => {
           if (value) {
-            var cleanUri = value.replace(
-              "ipfs://",
-              "https://infura-ipfs.io/ipfs/"
-            );
+            var cleanUri = value.replace("ipfs://", "https://ipfs.io/ipfs/");
             let metadata = axios.get(cleanUri).catch(function (error) {
               console.log(error.toJSON());
             });
@@ -237,23 +315,25 @@ export default function Sell() {
         });
         getUri.then((value) => {
           // console.log("abcd", value)
-          let rawImg = value.data.image;
-          var name = value.data.name;
-          var desc = value.data.description;
-          let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
-          Promise.resolve(owner).then((value) => {
-            // console.log("value123", value);
-            let ownerW = value;
-            let meta = {
-              name: name,
-              img: image,
-              tokenId: token,
-              wallet: ownerW,
-              desc,
-            };
-            // console.log(meta);
-            itemArray.push(meta);
-          });
+          if (value) {
+            let rawImg = value.data.image;
+            var name = value.data.name;
+            var desc = value.data.description;
+            let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
+            Promise.resolve(owner).then((value) => {
+              // console.log("value123", value);
+              let ownerW = value;
+              let meta = {
+                name: name,
+                img: image,
+                tokenId: token,
+                wallet: ownerW,
+                desc,
+              };
+              // console.log(meta);
+              itemArray.push(meta);
+            });
+          }
         });
       }
     });
@@ -393,7 +473,11 @@ export default function Sell() {
                 >
                   <img src="polygonwhite.png" width={"100px"} />
                 </Button>
-                <Button size="sm" onPress={bscChain} css={{ marginRight: "$2" }}>
+                <Button
+                  size="sm"
+                  onPress={bscChain}
+                  css={{ marginRight: "$2" }}
+                >
                   <img src="bsc.png" width={"100px"} />
                 </Button>
                 <Button size="sm" onPress={ethChain}>
@@ -592,11 +676,12 @@ export default function Sell() {
                     signer
                   );
 
-                  if (chain !== ("Mumbai Testnet" && "Songbird" )) {
+                  if (chain == "Binance") {
                     await contractnft
-                      .setApprovalForAll(address, true)
+                      .setApprovalForAll(address, true, {
+                      })
                       .then(async (res) => {
-                        console.log("res", res);
+                        console.log("res1", res);
                         const filter = {
                           address: nftcustom,
                           topics: [
@@ -634,7 +719,7 @@ export default function Sell() {
                   } else {
                     await contractnft
                       .setApprovalForAll(address, true, {
-                        gasPrice: "30000000000",
+                        gasPrice: "70000000000",
                       })
                       .then(async (res) => {
                         console.log("res", res);
@@ -656,10 +741,15 @@ export default function Sell() {
                           let transaction = await contract
                             .createVaultItem(nftcustom, nft.tokenId, price, {
                               value: listingFee,
-                              gasPrice: "30000000000",
+                              gasPrice: "70000000000",
                             })
                             .catch((err) => {
                               console.log("err", err);
+                              if (
+                                err.data?.message.includes("insufficient funds")
+                              ) {
+                                window.alert(err.data.message);
+                              }
                               setVisible(false);
                             });
                           if (!transaction) {
@@ -671,6 +761,9 @@ export default function Sell() {
                       })
                       .catch((err) => {
                         console.log("err", err);
+                        if (err.data?.message.includes("insufficient funds")) {
+                          window.alert(err.data.message);
+                        }
                         setVisible(false);
                       });
                   }
