@@ -538,7 +538,7 @@ export default function Home() {
             let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
             const price = market.getPrice(token);
             Promise.resolve(price).then((_hex) => {
-              var salePrice = Number(_hex);
+              var salePrice = ethers.BigNumber.from(_hex);
               var txPrice = salePrice.toString();
               Promise.resolve(listing).then((value) => {
                 // let ownerW = value;
@@ -549,10 +549,7 @@ export default function Home() {
                     seller = item.seller;
                     holder = item.holder;
 
-                    let outPrice = ethers.utils.formatUnits(
-                      salePrice.toString(),
-                      "ether"
-                    );
+                    let outPrice = ethers.utils.formatEther(salePrice);
                     let meta = {
                       name: name,
                       image: image,
@@ -695,14 +692,11 @@ export default function Home() {
               let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
               const price = market.getPrice(token);
               Promise.resolve(price).then((_hex) => {
-                var salePrice = Number(_hex);
+                var salePrice = ethers.BigNumber.from(_hex);
                 var txPrice = salePrice.toString();
                 Promise.resolve(owner).then((value) => {
                   let ownerW = value;
-                  let outPrice = ethers.utils.formatUnits(
-                    salePrice.toString(),
-                    "ether"
-                  );
+                  let outPrice = ethers.utils.formatEther(salePrice);
                   let meta = {
                     name: name,
                     image: image,
@@ -843,17 +837,14 @@ export default function Home() {
             let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
             const price = market.getPrice(tokenId);
             Promise.resolve(price).then((_hex) => {
-              var salePrice = Number(_hex);
+              var salePrice = ethers.BigNumber.from(_hex);
               var txPrice = salePrice.toString();
               // console.log("txPrice", txPrice);
               // if ( txPrice != 0) {
               Promise.resolve(item.seller).then((value) => {
                 // console.log("value3", value);
                 let ownerW = value;
-                let outPrice = ethers.utils.formatUnits(
-                  salePrice.toString(),
-                  "ether"
-                );
+                let outPrice = ethers.utils.formatEther(salePrice);
                 let meta = {
                   name: name,
                   image: image,
@@ -1003,7 +994,7 @@ export default function Home() {
             let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
             const price = market.getPrice(token);
             Promise.resolve(price).then((_hex) => {
-              var salePrice = Number(_hex);
+              var salePrice = ethers.BigNumber.from(_hex);
               var txPrice = salePrice.toString();
               Promise.resolve(listing).then((value) => {
                 // let ownerW = value;
@@ -1014,10 +1005,7 @@ export default function Home() {
                     seller = item.seller;
                     holder = item.holder;
 
-                    let outPrice = ethers.utils.formatUnits(
-                      salePrice.toString(),
-                      "ether"
-                    );
+                    let outPrice = ethers.utils.formatEther(salePrice);
                     let meta = {
                       name: name,
                       image: image,
@@ -1160,14 +1148,11 @@ export default function Home() {
               let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
               const price = market.getPrice(token);
               Promise.resolve(price).then((_hex) => {
-                var salePrice = Number(_hex);
+                var salePrice = ethers.BigNumber.from(_hex);
                 var txPrice = salePrice.toString();
                 Promise.resolve(owner).then((value) => {
                   let ownerW = value;
-                  let outPrice = ethers.utils.formatUnits(
-                    salePrice.toString(),
-                    "ether"
-                  );
+                  let outPrice = ethers.utils.formatEther(salePrice);
                   let meta = {
                     name: name,
                     image: image,
@@ -1310,7 +1295,7 @@ export default function Home() {
             let image = rawImg.replace("ipfs://", "https://ipfs.io/ipfs/");
             const price = market.getPrice(token);
             Promise.resolve(price).then((_hex) => {
-              var salePrice = Number(_hex);
+              var salePrice = ethers.BigNumber.from(_hex);
               var txPrice = salePrice.toString();
               Promise.resolve(listing).then((value) => {
                 // let ownerW = value;
@@ -1322,10 +1307,7 @@ export default function Home() {
                     seller = item.seller;
                     holder = item.holder;
 
-                    let outPrice = ethers.utils.formatUnits(
-                      salePrice.toString(),
-                      "ether"
-                    );
+                    let outPrice = ethers.utils.formatEther(salePrice);
                     let meta = {
                       name: name,
                       image: image,
