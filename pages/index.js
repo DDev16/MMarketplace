@@ -1695,7 +1695,7 @@ export default function Home() {
                   itemAriaLabel="abcd"
                   className="SliderWrapper"
                 >
-                  {sliderImgArray.map((nft, i) => (
+                  {allNfts.map((nft, i) => (
                     <div
                       key={i}
                       style={{
@@ -1713,7 +1713,7 @@ export default function Home() {
                           objectPosition: "cover",
                           paddingBottom: "5%",
                         }}
-                        src={nft.thumb}
+                        src={nft.image}
                       />
                     </div>
                   ))}
