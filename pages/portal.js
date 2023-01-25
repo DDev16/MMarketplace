@@ -471,17 +471,17 @@ export default function Sell() {
                   onPress={polyChain}
                   css={{ marginRight: "$2" }}
                 >
-                  <img src="polygonwhite.png" width={"100px"} />
+                  <img src="polygonwhite.png" width={"30px"} />
                 </Button>
                 <Button
                   size="sm"
                   onPress={bscChain}
                   css={{ marginRight: "$2" }}
                 >
-                  <img src="bsc.png" width={"100px"} />
+                  <img src="bsc.png" width={"30px"} />
                 </Button>
                 <Button size="sm" onPress={ethChain}>
-                  <img src="ethereumlogo.png" width={"100px"} />
+                  <img src="ethereumlogo.png" width={"30px"} />
                 </Button>
               </Row>
               <Card css={{ p: "$4", marginTop: "$3" }}>
