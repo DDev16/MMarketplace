@@ -257,9 +257,7 @@ export default function CreateMarket() {
             </div>
 
             <Spacer></Spacer>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text h3>Monster Bits IS More Than A Token</Text>
-            </div>
+            
 
             <Spacer></Spacer>
             <Card css={{ marginTop: "$5", boxShadow: "0px 0px 15px white" }}>
@@ -272,10 +270,6 @@ export default function CreateMarket() {
               </Card.Body>
             </Card>
             <Spacer></Spacer>
-            <div style={{ textAlign: "center" }}>
-              <img src="anonymous-pepe.gif" style={{ borderRadius: "50%", width: "300px", boxShadow: "0px 0px 10px" }} />
-            </div>
-
             <Spacer></Spacer>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Text h3>Create and Sell your NFT in the Marketplace</Text>
