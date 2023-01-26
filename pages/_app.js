@@ -8,6 +8,12 @@ import { SSRProvider } from "react-bootstrap";
 import React from 'react'
 import Widget from './widget.js'
 
+
+
+
+
+
+
 const theme = createTheme({
   type: "dark",
   theme: {
@@ -38,7 +44,13 @@ const theme = createTheme({
 
 
 
+
+import { useState } from 'react';
+import { Dropdown, Menu } from 'antd';
+
 function MyApp({ Component, pageProps }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <SSRProvider>
       <div style={{ background: "black" }}>
@@ -57,86 +69,118 @@ function MyApp({ Component, pageProps }) {
               "& > *": { width: "auto !important" },
             }}>
             <Col css={{ marginTop: "$8" }}>
-              <Button
-                size="sm"
-                style={{
-                  background: "#00000070",
-                  boxShadow: "0px 0px 4px #ffffff",
-                }}>
-                <Link href="/">
-                  <a
-                    style={{
-                      fontFamily: "SF Pro Display",
-                      fontWeight: "500",
-                      color: "white",
-                      fontSize: "17px",
-                    }}>
-                    MarketPlace
-                  </a>
-                </Link>
-              </Button>
-            </Col>
+              <Dropdown
+                overlay={
+                  <Menu style={{ backgroundColor: '#484b50', size: "15px" }}>
+                    <Menu.Item key="1">
+                      <Link href="/">
+                        <a
+                          style={{
+                            fontFamily: "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                          }}
+                        >
+                          🏠 MarketPlace
+                        </a>
+                      </Link>
+                    </Menu.Item>
+    
+    
+                    <Menu.Item key="2">
+                      <Link href="/collection">
+                        <a
+                          style={{
+                            fontFamily: "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                            transition: "0.5s",
+                            '&:hover': {
+                              color: "purple"
+                            }
+                          }}
+                        >
+                          👾 Collection
+                        </a>
+                      </Link>
+                    </Menu.Item>
 
-            <Col css={{ marginTop: "$8" }}>
-              <Button
-                size="sm"
-                style={{
-                  background: "#00000070",
-                  boxShadow: "0px 0px 4px #ffffff",
-                }}>
-                <Link href="/collection">
-                  <a
-                    style={{
-                      fontFamily: "SF Pro Display",
-                      fontWeight: "500",
-                      color: "white",
-                      fontSize: "17px",
-                    }}>
-                    Collection
-                  </a>
-                </Link>
-              </Button>
-            </Col>
+                    <Menu.Item key="3">
+                      <Link href="https://monstersnftinc.co/monsters">
+                        <a
+                          style={{
+                            fontFamily: "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                            transition: "0.5s",
+                            '&:hover': {
+                              color: "purple"
+                            }
+                          }}
+                        >
+                            👩‍💻 Mint Dapps
+                        </a>
+                      </Link>
+                    </Menu.Item>
 
-            <Col css={{ marginTop: "$8" }}>
-              <Button
-                size="sm"
-                style={{
-                  background: "#00000070",
-                  boxShadow: "0px 0px 4px #ffffff",
-                }}>
-                <Link href="/create">
+                    <Menu.Item key="4">
+                      <Link href="/create">
+                        <a
+                          style={{
+                            fontFamily: "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                          }}>
+                          🌌 Create Portal
+                        </a>
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item key="5">
+                      <Link href="/portal">
+                        <a
+                          style={{
+                            fontFamily:
+
+                              "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                          }}>
+                         👨 My NFT Portal
+                        </a>
+
+                      </Link>
+                    </Menu.Item>
+                  </Menu>
+                  
+                  
+                }
+                trigger={['click']}
+              >
+                <Button
+                  size="sm"
+                  style={{
+                    background: "#00000070",
+                    boxShadow: "0px 0px 4px #ffffff",
+                  }}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
                   <a
                     style={{
                       fontFamily: "SF Pro Display",
                       fontWeight: "500",
                       color: "white",
                       fontSize: "17px",
-                    }}>
-                    Create Portal
+                    }}
+                  >
+                    Menu
                   </a>
-                </Link>
-              </Button>
-            </Col>
-            <Col css={{ marginTop: "$8" }}>
-              <Button
-                size="sm"
-                style={{
-                  background: "#00000070",
-                  boxShadow: "0px 0px 4px #ffffff",
-                }}>
-                <Link href="/portal">
-                  <a
-                    style={{
-                      fontFamily: "SF Pro Display",
-                      fontWeight: "500",
-                      color: "white",
-                      fontSize: "17px",
-                    }}>
-                    My NFT Portal
-                  </a>
-                </Link>
-              </Button>
+                </Button>
+              </Dropdown>
             </Col>
             <ConnectChain />
           </Row>
@@ -148,10 +192,8 @@ function MyApp({ Component, pageProps }) {
           <Footer />
         </Footer>
         <Widget />
-        
       </div>
     </SSRProvider>
   );
 }
-
 export default MyApp;

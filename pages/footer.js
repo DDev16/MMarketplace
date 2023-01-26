@@ -8,17 +8,17 @@ export default function Footer() {
     {
       id: 1,
       img: "discord.png",
-      url: "https://discord.com/",
+      url: "https://discord.gg/rZXkrpqrQH",
     },
     {
       id: 2,
-      img: "youtube.png",
-      url: "https://www.youtube.com/",
+      img: "insta.png",
+      url: "https://www.instagram.com/monstersnftinc/",
     },
     {
       id: 3,
       img: "twitter.png",
-      url: "https://twitter.com/",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
   ];
 
@@ -26,22 +26,27 @@ export default function Footer() {
     {
       id: 1,
       img: "bsc.png",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
     {
       id: 2,
       img: "polygonwhite.png",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
     {
       id: 3,
       img: "ethereumlogo.png",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
     {
       id: 4,
       img: "flarelogo.png",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
     {
       id: 5,
       img: "songbirdlogo.png",
+      url: "https://twitter.com/MonstersNFT_Inc",
     },
   ];
 
@@ -74,9 +79,9 @@ export default function Footer() {
                     fontSmooth: "always",
                     fontFamily: "SF Pro Display",
                   }}>
-                  The blockchain agnostic marketplace. The token with endless
-                  posibilities. NFTs are more than just art. Its meant to change
-                  the way humans establish ownership of an asset beyond paper.
+                  The marketplace that defies the boundaries of blockchain technology. 
+                   A token with limitless potential. 
+                   NFTs are not just a medium for art, they are revolutionizing the concept of ownership and breaking free from traditional paper-based systems.
                 </Text>
               </Col>
             </Grid>
@@ -94,8 +99,8 @@ export default function Footer() {
                         <img
                           src={item.img}
                           style={{ marginRight: "1px" }}
-                          width="150px"
-                          height="50px"></img>
+                          width="135px"
+                          height="70px"></img>
                       </a>
                     );
                   })}
@@ -108,14 +113,15 @@ export default function Footer() {
                   Integrations
                 </Text>
                 <Text span css={{ textAlign: "center", display: "block" }}>
-                  {footer2.map((item, idx) => {
+                {footer2.map((item, idx) => {
                     return (
-                      <img
-                        src={item.img}
-                        style={{ marginRight: "5px" }}
-                        width="50px"
-                        height="50px"
-                        key={item.id}></img>
+                      <a href={item.url} key={item.id}>
+                        <img
+                          src={item.img}
+                          style={{ marginRight: "5px" }}
+                          width="50px"
+                          height="50px"></img>
+                      </a>
                     );
                   })}
                 </Text>

@@ -145,7 +145,7 @@ export default function CreateMarket() {
     const signer = provider.getSigner();
     let contract = new ethers.Contract(nftcontract, NFT, signer);
     let transaction = await contract
-      .createNFT(url, { gasPrice: "30000000000", value: "7500000000000000" })
+      .createNFT(url, { gasPrice: "50000000000", value: "7500000000000000" })
       .catch((err) => {
         setVisible(false);
         console.log("err", err.message);
@@ -172,7 +172,7 @@ export default function CreateMarket() {
     transaction = await contract
       .createVaultItem(nftcontract, tokenId, price, {
         value: listingFee,
-        gasPrice: "30000000000",
+        gasPrice: "70000000000",
       })
       .catch((err) => {
         setVisible(false);
@@ -184,6 +184,7 @@ export default function CreateMarket() {
     await transaction.wait();
     router.push("/");
   }
+
   async function buyNFT() {
     setVisible(true);
     const { name, description } = formInput;
@@ -228,7 +229,7 @@ export default function CreateMarket() {
       <Container
         lg
         gap={2}
-        css={{ fontFamily: "SF Pro Display", fontWeight: "200" }}
+        css={{ fontFamily: "SF Pro Display", fontWeight: "200"}}
       >
         <Text h2>NFT Creator Portal</Text>
         <Row gap={4}>
@@ -236,17 +237,55 @@ export default function CreateMarket() {
             <Spacer></Spacer>
             <Spacer></Spacer>
             <Spacer></Spacer>
-            <Text h3 className="ml-3">
-              The NFT Marketplace with a Reward.
-            </Text>
-            <Text h3>Monster Bits IS More Than A Token</Text>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Text h3 className="ml-3">
+                The NFT Marketplace with a Reward.
+              </Text>
+            </div>
+
+            <Card css={{ marginTop: "$5", boxShadow: "0px 0px 15px white" }}>
+              <Card.Body style={{ backgroundColor: "#00000040"}}>
+                <Text>
+                  Select your Preferred Network, Create your Amazing NFT by
+                  uploading your art using the simple NFT Dashboard. Simple!
+                </Text>
+              </Card.Body>
+            </Card>
             <Spacer></Spacer>
+            <div style={{ textAlign: "center" }}>
+              <img src="monster.png" style={{ borderRadius: "50%", width: "300px", boxShadow: "0px 0px 10px" }} />
+            </div>
+
+            <Spacer></Spacer>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Text h3>Monster Bits IS More Than A Token</Text>
+            </div>
+
+            <Spacer></Spacer>
+            <Card css={{ marginTop: "$5", boxShadow: "0px 0px 15px white" }}>
+              <Card.Body style={{ backgroundColor: "#00000040"}}>
+                <Text>
+                  Monsters Marketplace allows you to sell your NFT and accept
+                  your favorite crypto as payment! No borders, No restrictions.
+                  Simple!
+                </Text>
+              </Card.Body>
+            </Card>
+            <Spacer></Spacer>
+            <div style={{ textAlign: "center" }}>
+              <img src="anonymous-pepe.gif" style={{ borderRadius: "50%", width: "300px", boxShadow: "0px 0px 10px" }} />
+            </div>
+
+            <Spacer></Spacer>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Text h3>Create and Sell your NFT in the Marketplace</Text>
+            </div>
+            <Spacer></Spacer>
             <Card
               style={{
                 maxWidth: "300px",
                 background: "#ffffff05",
-                boxShadow: "0px 0px 5px #ffffff60",
+                boxShadow: "0px 0px 10px #ffffff60",
               }}
             >
               {isLoading ? (
@@ -301,11 +340,11 @@ export default function CreateMarket() {
                   <Container css={{ marginBottom: "$2" }}>
                     <Input
                       css={{ marginTop: "$2" }}
-                      placeholder="Set your price in MC"
+                      placeholder="Set your price!"
                       onChange={(e) =>
                         updateFormInput({ ...formInput, price: e.target.value })
                       }
-                      label="price"
+                      label="Price"
                       type="number"
                     />
                     <Button
@@ -352,34 +391,9 @@ export default function CreateMarket() {
                 </>
               )}
             </Card>
-            <img src="n2dr-logo.png" width={"300px"} />
+            <Spacer/>
           </Col>
           <Col css={{ marginRight: "$7" }}>
-            <Spacer></Spacer>
-          </Col>
-          <Col>
-            <Spacer></Spacer>
-            <Card css={{ marginTop: "$5", marginBottom: "$5" }}>
-              <Card.Body style={{ backgroundColor: "#00000040" }}>
-                <Text>
-                  Select your Preferred Network, Create your Amazing NFT by
-                  uploading your art using the simple NFT Dashboard. Simple!
-                </Text>
-              </Card.Body>
-            </Card>
-            <img src="chainagnostic.png" />
-            <Card css={{ marginTop: "$5" }}>
-              <Card.Body style={{ backgroundColor: "#00000040" }}>
-                <Text>
-                  Monsters Marketplace allows you to sell your NFT and accept
-                  your favorite crypto as payment! No borders, No restrictions.
-                  Simple!
-                </Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Spacer></Spacer>
           </Col>
         </Row>
       </Container>

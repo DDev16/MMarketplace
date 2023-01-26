@@ -14,6 +14,7 @@ import {
   polyChain,
   ethChain,
   bscChain,
+  hardChain,
 } from "../engine/chainchange";
 import {
   Card,
@@ -480,9 +481,26 @@ export default function Sell() {
                 >
                   <img src="bsc.png" width={"30px"} />
                 </Button>
-                <Button size="sm" onPress={ethChain}>
+                <Button
+                  size="sm"
+                  onPress={hardChain}
+                  css={{ marginRight: "$2" }}
+                >
+                  <img src="songbirdlogo.png" width={"30px"} />
+                </Button>
+                <Button size="sm" onPress={ethChain}
+                css={{ marginRight: "$2" }}
+                >
                   <img src="ethereumlogo.png" width={"30px"} />
                 </Button>
+                <Button
+                  size="sm"
+                  onPress={flrChain}
+                  css={{ marginRight: "$2"}}
+                >
+                  <img src="flarelogo.png" width={"30px"} />
+                </Button>
+                
               </Row>
               <Card css={{ p: "$4", marginTop: "$3" }}>
                 <Text h3>

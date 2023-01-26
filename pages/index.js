@@ -1659,6 +1659,8 @@ export default function Home() {
                   fontFamily: "Comic Sans MS",
                   animation: "spin 2s linear infinite",
                   backgroundSize: "cover",
+                  backgroundColor: "#00000070",
+                  borderRadius: "10px",
                 }}
                 h2
               >
@@ -1716,16 +1718,17 @@ export default function Home() {
       <div style={{ textAlign: "center", minHeight: "100px" }}>
                 <audio controls style={{ color: "blue" }}>
                   <source
-                    src="./public/Avicii.mp3"
+                    src="./tunes.mp3"
                     type="audio/mpeg"
                   />
                   <source
-                    src="./public/Avicii.mp3"
+                    src="./tunes.mp3"
                     type="audio/ogg"
                   />
                   Your browser does not support the audio element.
                 </audio>
               </div>
+              
         <Container sm>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <select
