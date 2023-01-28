@@ -144,23 +144,57 @@ export default function CreateMarket() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     let contract = new ethers.Contract(nftcontract, NFT, signer);
+    let gasPrice, _value;
+
+    switch (connection.chainId) {
+        case "0x5":
+            gasPrice = "50000000000";
+            _value = "0";
+            break;
+        case "0x13881":
+            gasPrice = "20000000000";
+            _value = "1000000000000000000";
+            break;
+        case "0x61":
+            gasPrice = "30000000000";
+            _value = "0";
+            break;
+        case "0x13":
+            gasPrice = "40000000000";
+            _value = "0";
+            break;
+        case "0xe":
+            gasPrice = "60000000000";
+            _value = "0";
+            break;
+        case "0x38":
+            gasPrice = "70000000000";
+            _value = "0";
+            break;
+        case "0x89":
+            gasPrice = "90000000000";
+            _value = "0";
+            break;
+        default:
+            console.log("Unsupported network");
+            return;
+    }
     let transaction = await contract
-      .createNFT(url, { gasPrice: "50000000000", value: "0" })
-      .catch((err) => {
-        setVisible(false);
-        console.log("err", err.message);
-      });
+        .createNFT(url, { gasPrice: gasPrice, value: _value })
+        .catch((err) => {
+            setVisible(false);
+            console.log("err", err.message);
+        });
 
     if (!transaction) {
-      return;
+        return;
     }
 
     let tx = await transaction.wait();
-    // let event = tx.events[0];
     let event = tx.events.filter((i) => {
-      if (i.event == "Transfer") {
-        return i;
-      }
+        if (i.event == "Transfer") {
+            return i;
+        }
     });
     console.log("event", event);
     let value = event[0].args[2];
@@ -170,20 +204,20 @@ export default function CreateMarket() {
     let listingFee = await contract.getListingFee();
     listingFee = listingFee.toString();
     transaction = await contract
-      .createVaultItem(nftcontract, tokenId, price, {
-        value: listingFee,
-        gasPrice: "50000000000",
-      })
-      .catch((err) => {
-        setVisible(false);
-        console.log("err", err.message);
-      });
+        .createVaultItem(nftcontract, tokenId, price, {
+            value: listingFee,
+            gasPrice: gasPrice,
+        })
+        .catch((err) => {
+            setVisible(false);
+            console.log("err", err.message);
+        });
     if (!transaction) {
-      return;
+        return;
     }
     await transaction.wait();
     router.push("/");
-  }
+}
 
   async function buyNFT() {
     setVisible(true);
