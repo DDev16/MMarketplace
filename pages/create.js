@@ -145,7 +145,7 @@ export default function CreateMarket() {
     const signer = provider.getSigner();
     let contract = new ethers.Contract(nftcontract, NFT, signer);
     let transaction = await contract
-      .createNFT(url, { gasPrice: "50000000000", value: "7500000000000000" })
+      .createNFT(url, { gasPrice: "50000000000", value: "0" })
       .catch((err) => {
         setVisible(false);
         console.log("err", err.message);
@@ -172,7 +172,7 @@ export default function CreateMarket() {
     transaction = await contract
       .createVaultItem(nftcontract, tokenId, price, {
         value: listingFee,
-        gasPrice: "70000000000",
+        gasPrice: "50000000000",
       })
       .catch((err) => {
         setVisible(false);

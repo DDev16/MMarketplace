@@ -7,10 +7,10 @@ export const client = new NFTStorage({
 /*
 Songbird Testnet ---updated addresses 
 */
-export var hhresell = "0x4A06Ef3E49B890CD7224C813333950A5842ec3f1";
-export var hhnftcol = "0x81D80d8A8ccBB761b74be2D6F969b16a498e4c73";
-export var hhnft = "0xf3ad4b303588E4Dd555b440CA8F5B6782e8C4ce0";
-export var hhmarket = "0x5596C609dd6843411e97a832389f58CD861618e1";
+export var hhresell = "0x6db73a59FDB714317BcD39DCD7B65C82B2248Bcd";
+export var hhnftcol = "0x51b74F4d7C2c3A6ad3E87998a2Ecc95c2b32FFc6";
+export var hhnft = "0xEf22f57557618b415Adb9FF8493451cAfc9A5882";
+export var hhmarket = "0xDB99EC9E5DB576512eE1f7ba08a6Ca5122A96fa6";
 export var hhrpc = "https://songbird.towolabs.com/rpc";
 
 /*

@@ -670,7 +670,7 @@ export default function Sell() {
                   const { price } = listPrice;
                   if (!price) return;
                   try {
-                    relistNFT(listPrice);
+                    setTimeout(() => relistNFT(listPrice), 100);
                   } catch (error) {
                     console.log("Transaction Failed", error);
                   }
