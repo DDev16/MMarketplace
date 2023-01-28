@@ -1664,7 +1664,7 @@ export default function Home() {
                 }}
                 h2
               >
-                🔥 Top NFT's 🔥
+                🔥Top NFT's🔥
               </Text>
               
               {sliderImgArray && (

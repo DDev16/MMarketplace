@@ -8,6 +8,9 @@ import { SSRProvider } from "react-bootstrap";
 import React from 'react'
 import Widget from './widget.js'
 
+import { useState } from 'react';
+import { Dropdown, Menu } from 'antd';
+
 
 
 
@@ -45,11 +48,11 @@ const theme = createTheme({
 
 
 
-import { useState } from 'react';
-import { Dropdown, Menu } from 'antd';
+
 
 function MyApp({ Component, pageProps }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
     <SSRProvider>
@@ -107,25 +110,6 @@ function MyApp({ Component, pageProps }) {
                       </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="3">
-                      <Link href="https://monstersnftinc.co/monsters">
-                        <a
-                          style={{
-                            fontFamily: "SF Pro Display",
-                            fontWeight: "500",
-                            color: "white",
-                            fontSize: "17px",
-                            transition: "0.5s",
-                            '&:hover': {
-                              color: "purple"
-                            }
-                          }}
-                        >
-                            👩‍💻 Mint Dapps
-                        </a>
-                      </Link>
-                    </Menu.Item>
-
                     <Menu.Item key="4">
                       <Link href="/create">
                         <a
@@ -155,8 +139,67 @@ function MyApp({ Component, pageProps }) {
 
                       </Link>
                     </Menu.Item>
+
+                    <Menu.Item key="3" onClick={() => setIsOpen(!isOpen)}>
+                      
+                      <Dropdown
+                        overlay={
+                          <Menu style={{ backgroundColor: '#484b50', size: "15px" }}>
+                            <Menu.Item key="1">
+                              <Link href="https://monstersnftinc.co/mintdapps/dapp1">
+                                <a
+                                  style={{
+                                    fontFamily: "SF Pro Display",
+                                    fontWeight: "500",
+                                    color: "white",
+                                    fontSize: "17px",
+                                  }}
+                                >
+                                  Dapp 1
+                                </a>
+                              </Link>
+                            </Menu.Item>
+                            <Menu.Item key="2">
+                              <Link href="https://monstersnftinc.co/mintdapps/dapp2">
+                                <a
+                                  style={{
+                                    fontFamily: "SF Pro Display",
+                                    fontWeight: "500",
+                                    color: "white",
+                                    fontSize: "17px",
+                                  }}
+                                >
+                                  Dapp 2
+                                </a>
+                              </Link>
+                            </Menu.Item>
+                          </Menu>
+                        }
+                        trigger={['click']}
+                      >
+                        <Button
+                          size="sm"
+                          style={{
+                            background: "#00000070",
+                            boxShadow: "0px 0px 4px #ffffff",
+                          }}
+                        >
+                          <a
+                            style={{
+                              fontFamily: "SF Pro Display",
+                              fontWeight: "500",
+                              color: "white",
+                              fontSize: "17px",
+                            }}
+                          >
+                            👩‍💻 Web3 Dapps
+                          </a>
+                        </Button>
+                      </Dropdown>
+                    </Menu.Item>
+
                   </Menu>
-                  
+
                   
                 }
                 trigger={['click']}
