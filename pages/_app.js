@@ -7,6 +7,7 @@ import ConnectChain from "../engine/connectchain";
 import { SSRProvider } from "react-bootstrap";
 import React from 'react'
 import Widget from './widget.js'
+import '../styles/globals.css'
 
 import { useState } from 'react';
 import { Dropdown, Menu } from 'antd';
@@ -52,7 +53,7 @@ const theme = createTheme({
 
 function MyApp({ Component, pageProps }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  
 
   return (
     <SSRProvider>
@@ -72,7 +73,7 @@ function MyApp({ Component, pageProps }) {
               "& > *": { width: "auto !important" },
             }}>
             <Col css={{ marginTop: "$8" }}>
-              <Dropdown
+              <Dropdown 
                 overlay={
                   <Menu style={{ backgroundColor: '#484b50', size: "15px" }}>
                     <Menu.Item key="1">
@@ -111,7 +112,7 @@ function MyApp({ Component, pageProps }) {
                     </Menu.Item>
 
                     <Menu.Item key="4">
-                      <Link href="/create">
+                      <Link href="/Verify">
                         <a
                           style={{
                             fontFamily: "SF Pro Display",
@@ -119,7 +120,7 @@ function MyApp({ Component, pageProps }) {
                             color: "white",
                             fontSize: "17px",
                           }}>
-                          🌌 Create Portal
+                          🌌 Creator Portal Verify
                         </a>
                       </Link>
                     </Menu.Item>
@@ -140,13 +141,30 @@ function MyApp({ Component, pageProps }) {
                       </Link>
                     </Menu.Item>
 
+                    <Menu.Item key="6">
+                      <Link href="https://www.monstersnftinc.co/">
+                        <a
+                          style={{
+                            fontFamily:
+
+                              "SF Pro Display",
+                            fontWeight: "500",
+                            color: "white",
+                            fontSize: "17px",
+                          }}>
+                        💻 Website
+                        </a>
+
+                      </Link>
+                    </Menu.Item>
+
                     <Menu.Item key="3" onClick={() => setIsOpen(!isOpen)}>
                       
                       <Dropdown
                         overlay={
                           <Menu style={{ backgroundColor: '#484b50', size: "15px" }}>
                             <Menu.Item key="1">
-                              <Link href="https://monstersnftinc.co/mintdapps/dapp1">
+                              <Link href="https://monstersnftinc.co/monsters">
                                 <a
                                   style={{
                                     fontFamily: "SF Pro Display",
@@ -155,7 +173,7 @@ function MyApp({ Component, pageProps }) {
                                     fontSize: "17px",
                                   }}
                                 >
-                                  Dapp 1
+                                 👹 FLR Monsters Mint
                                 </a>
                               </Link>
                             </Menu.Item>
@@ -169,7 +187,35 @@ function MyApp({ Component, pageProps }) {
                                     fontSize: "17px",
                                   }}
                                 >
-                                  Dapp 2
+                                 👽 SGB Astro Aliens Mint
+                                </a>
+                              </Link>
+                            </Menu.Item>
+                            <Menu.Item key="3">
+                              <Link href="https://monster-crossover.vercel.app/">
+                                <a
+                                  style={{
+                                    fontFamily: "SF Pro Display",
+                                    fontWeight: "500",
+                                    color: "white",
+                                    fontSize: "17px",
+                                  }}
+                                >
+                                🌉 NFT Bridge
+                                </a>
+                              </Link>
+                            </Menu.Item>
+                            <Menu.Item key="4">
+                              <Link href="https://monster-crossover.vercel.app/">
+                                <a
+                                  style={{
+                                    fontFamily: "SF Pro Display",
+                                    fontWeight: "500",
+                                    color: "white",
+                                    fontSize: "17px",
+                                  }}
+                                >
+                                🤠 SGB MonsterDudes
                                 </a>
                               </Link>
                             </Menu.Item>

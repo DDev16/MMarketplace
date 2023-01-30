@@ -26,27 +26,27 @@ export default function Footer() {
     {
       id: 1,
       img: "bsc.png",
-      url: "https://twitter.com/MonstersNFT_Inc",
+      url: "https://www.binance.us/?utm_source=binanceglobal&utm_medium=popup&utm_campaign=com_redirect",
     },
     {
       id: 2,
       img: "polygonwhite.png",
-      url: "https://twitter.com/MonstersNFT_Inc",
+      url: "https://polygon.technology/",
     },
     {
       id: 3,
       img: "ethereumlogo.png",
-      url: "https://twitter.com/MonstersNFT_Inc",
+      url: "https://ethereum.org/en/",
     },
     {
       id: 4,
       img: "flarelogo.png",
-      url: "https://twitter.com/MonstersNFT_Inc",
+      url: "https://flare.network/",
     },
     {
       id: 5,
       img: "songbirdlogo.png",
-      url: "https://twitter.com/MonstersNFT_Inc",
+      url: "https://flare.network/songbird/",
     },
   ];
 

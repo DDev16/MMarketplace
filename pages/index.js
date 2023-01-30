@@ -95,6 +95,8 @@ import LoadingPopup from "../components/LoadingPopup";
 import BuyCard from "../components/BuyCard";
 import BuyListCard from "../components/BuyListCard";
 
+
+
 export default function Home() {
   const [connectedWallet, setConnectedWallet] = useState(null);
   const [hhlist, hhResellNfts] = useState(null);
@@ -124,6 +126,12 @@ export default function Home() {
   const [songbirdNftShow, setSongbirdNftShow] = useState(false);
   const [nftNameSearchState, setNftNameSearchState] = useState(false);
   const [nftNameSearchArray, setNftNameSearchArray] = useState([]);
+  const [ethereumCollectionShow, setEthereumCollectionShow] = useState(true);
+  const [binanceCollectionShow, setBinanceCollectionShow] = useState(false);
+  const [polygonCollectionShow, setPolygonCollectionShow] = useState(false);
+  const [flareCollectionShow, setFlareCollectionShow] = useState(false);
+  const [songbirdCollectionShow, setSongbirdCollectionShow] = useState(false);
+  
 
   const sliderImgArray = [
     {
@@ -190,6 +198,42 @@ export default function Home() {
       setSongbirdNftShow(true);
     }
   };
+
+  const networkCollectionSelect = (e) => {
+    setNftNameSearchState(false);
+    if (e === "Ethereum") {
+      setEthereumCollectionShow(true);
+      setBinanceCollectionShow(false);
+      setPolygonCollectionShow(false);
+      setFlareCollectionShow(false);
+      setSongbirdCollectionShow(false);
+    } else if (e === "Binance") {
+      setEthereumCollectionShow(false);
+      setBinanceCollectionShow(true);
+      setPolygonCollectionShow(false);
+      setFlareCollectionShow(false);
+      setSongbirdCollectionShow(false);
+    } else if (e === "Polygon") {
+      setEthereumCollectionShow(false);
+      setBinanceCollectionShow(false);
+      setPolygonCollectionShow(true);
+      setFlareCollectionShow(false);
+      setSongbirdCollectionShow(false);
+    } else if (e === "Flare") {
+      setEthereumCollectionShow(false);
+      setBinanceCollectionShow(false);
+      setPolygonCollectionShow(false);
+      setFlareCollectionShow(true);
+      setSongbirdCollectionShow(false);
+    } else if (e === "Songbird") {
+      setEthereumCollectionShow(false);
+      setBinanceCollectionShow(false);
+      setPolygonCollectionShow(false);
+      setFlareCollectionShow(false);
+      setSongbirdCollectionShow(true);
+    }
+  };
+
 
   const searchNftFunc = (e) => {
     setNftNameSearchState(true);
@@ -289,6 +333,7 @@ export default function Home() {
     confetti();
   };
   const router = useRouter();
+
 
   const detectChain = async () => {
     const provider = await detectEthereumProvider();
@@ -1623,7 +1668,7 @@ export default function Home() {
   // ]);
 
   return (
-    <>
+    <>  
     
       <div>
         <div>
@@ -1728,6 +1773,23 @@ export default function Home() {
                   Your browser does not support the audio element.
                 </audio>
               </div>
+
+              <div style={{ textAlign: 'center' }}>
+  <select
+    style={{
+      display: 'inline-block',
+      background: 'black',
+      padding: '10px 30px',
+      borderRadius: '10px',
+      marginRight: '3%'
+    }}
+    onChange={e => networkCollectionSelect(e.target.value)}
+  >
+    <option>Collections</option>
+    <option>Community NFTs</option>
+  </select>
+</div>
+
               
         <Container sm>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -1762,6 +1824,8 @@ export default function Home() {
             />
           </div>
         </Container>
+      
+        
         {flareNftShow && (
           <>
             <Container sm>

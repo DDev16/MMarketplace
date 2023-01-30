@@ -27,12 +27,22 @@ import "sf-font";
 import LoadingPopup from "../components/LoadingPopup";
 import Image from "next/image";
 
+import { connectWallet } from '../components/web3connect'
+
+
+
+
+
+
+
 export default function CreateMarket() {
   const [fileUrl, setFileUrl] = useState(null);
   const [nftcontract, getNft] = useState([]);
   const [market, getMarket] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
+
+
 
   const [formInput, updateFormInput] = useState({
     price: "",
@@ -255,6 +265,25 @@ export default function CreateMarket() {
     }
     await transaction.wait();
     router.push("/portal");
+  }
+
+  
+
+  useEffect(() => {
+    const checkauth = setInterval(() => {
+        verifyUser()
+    }, 2000)
+    return () => clearInterval(checkauth)
+})
+
+async function verifyUser() {
+    const output = await connectWallet()
+    if (output === 0) {
+      router.push('/denied')
+    }
+    else {
+      router.push('/create')
+    }
   }
 
   return (
