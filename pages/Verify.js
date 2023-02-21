@@ -39,10 +39,10 @@ export default function Home() {
 </h1>
        
 <p className={styles.grid} style={{marginBottom: "1em"}}>
-  Get ready to unleash your creativity and bring your artistic vision to life! This is the gateway to our NFT Creation Portal, where you can craft your own unique NFTs with ease. With just a few clicks, you'll be able to turn your artwork into one-of-a-kind digital treasures. So why wait? Step right up and start creating your NFT masterpieces today!
+  Get ready to unleash your creativity and bring your artistic vision to life! This is the gateway to our NFT Creation Portal, where you can craft your own unique NFTs with ease. With just a few clicks, you will be able to turn your artwork into one-of-a-kind digital treasures. So why wait? Step right up and start creating your NFT masterpieces today!
 </p>
 <p className={styles.grid}>
-To access the NFT Creation Portal, it is required that you possess at least one Astro Alien in your wallet. You may access the portal once you have an Astro Alien in your wallet, Verify your ownership by clicking the "Connect Wallet" button. If no Astro Alien is found in your wallet upon clicking "Connect Wallet", access will be denied. <strong>You MUST be connected to Songbird Network when clicking "Connect Wallet"</strong></p>
+To access the NFT Creation Portal, it is required that you possess at least one Astro Alien in your wallet. You may access the portal once you have an Astro Alien in your wallet, Verify your ownership by clicking the Connect Wallet button. If no Astro Alien is found in your wallet upon clicking Connect Wallet, access will be denied. <strong>You MUST be connected to Songbird Network when clicking Connect Wallet</strong></p>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
