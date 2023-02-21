@@ -178,7 +178,7 @@ function MyApp({ Component, pageProps }) {
                               </Link>
                             </Menu.Item>
                             <Menu.Item key="2">
-                              <Link href="https://monstersnftinc.co/mintdapps/dapp2">
+                              <Link href="https://monstersnftinc.co/Aliens/">
                                 <a
                                   style={{
                                     fontFamily: "SF Pro Display",
@@ -206,7 +206,7 @@ function MyApp({ Component, pageProps }) {
                               </Link>
                             </Menu.Item>
                             <Menu.Item key="4">
-                              <Link href="https://monster-crossover.vercel.app/">
+                              <Link href="https://www.monstersnftinc.co/sgb-monster-dudes/">
                                 <a
                                   style={{
                                     fontFamily: "SF Pro Display",
