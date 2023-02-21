@@ -253,15 +253,15 @@ export default function ConnectChain() {
               <h5>Flare Network</h5>
             </div>
           </Dropdown.Item>
-          <Dropdown.Item textValue="Goerli" key="Goerli">
-            <h5>Goerli </h5>
-          </Dropdown.Item>
-          <Dropdown.Item textValue="Bsctest" key="Bsctest">
-            <h5> TestNet</h5>
-          </Dropdown.Item>
-          <Dropdown.Item textValue="Mumbai" key="Mumbai">
-            <h5> Mumbai TestNet</h5>
-          </Dropdown.Item>
+          {/* <Dropdown.Item textValue="Goerli" key="Goerli"> */}
+            {/* <h5>Goerli </h5> */}
+          {/* </Dropdown.Item> */}
+          {/* <Dropdown.Item textValue="Bsctest" key="Bsctest"> */}
+            {/* <h5> TestNet</h5> */}
+          {/* </Dropdown.Item> */}
+          {/* <Dropdown.Item textValue="Mumbai" key="Mumbai"> */}
+            {/* <h5> Mumbai TestNet</h5> */}
+          {/* </Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
     </Col>

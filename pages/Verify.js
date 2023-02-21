@@ -45,9 +45,9 @@ export default function Home() {
 To access the NFT Creation Portal, it is required that you possess at least one Astro Alien in your wallet. You may access the portal once you have an Astro Alien in your wallet, Verify your ownership by clicking the Connect Wallet button. If no Astro Alien is found in your wallet upon clicking Connect Wallet, access will be denied. <strong>You MUST be connected to Songbird Network when clicking Connect Wallet</strong></p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a href="https://monstersnftinc.co/Aliens/" className={styles.card}>
             <h2>Songbird Astro Aliens Mint Dapp &rarr;</h2>
-            <img src="Aliens.gif" alt="Alien Monsters" width="250" height="300" style={{borderRadius: '10%'}} />
+            <img src="Astro Aliens (125).png" alt="Alien Monsters" width="250" height="300" style={{borderRadius: '10%'}} />
 
 
             <p>
@@ -57,14 +57,14 @@ To access the NFT Creation Portal, it is required that you possess at least one 
 
          <a href="https://www.monstersnftinc.co/monsters/" className={styles.card}>
          <h2>Flare Marvelous Monsters Mint Dapp &rarr;</h2>
-         <img src="Monsters.gif" alt="Flare Marvelous Monsters" width="250" height="275" style={{borderRadius: '10%'}}/>
+         <img src="Monsters (95).png" alt="Flare Marvelous Monsters" width="250" height="275" style={{borderRadius: '10%'}}/>
   
   <p>Mint a Flare Networks Marvelous Monster!</p>
 </a>
 
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
+            href="https://monstersnftinc.co/monsters/"
             className={styles.card}
           >
             <h2>Unleash an abundance of possibilities with massive collections! &rarr;</h2>
