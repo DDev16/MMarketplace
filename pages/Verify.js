@@ -64,7 +64,7 @@ To access the NFT Creation Portal, it is required that you possess at least one 
 
 
           <a
-            href="https://monstersnftinc.co/monsters/"
+            href="https://discord.gg/EdFDGdWA"
             className={styles.card}
           >
             <h2>Unleash an abundance of possibilities with massive collections! &rarr;</h2>
