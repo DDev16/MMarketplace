@@ -90,10 +90,14 @@ import {
   bscChain,
   polyChain,
 } from "../engine/chainchange";
-import Web3 from "web3";
 import LoadingPopup from "../components/LoadingPopup";
 import BuyCard from "../components/BuyCard";
 import BuyListCard from "../components/BuyListCard";
+
+
+
+
+
 
 
 
@@ -131,6 +135,8 @@ export default function Home() {
   const [polygonCollectionShow, setPolygonCollectionShow] = useState(false);
   const [flareCollectionShow, setFlareCollectionShow] = useState(false);
   const [songbirdCollectionShow, setSongbirdCollectionShow] = useState(false);
+
+
   
 
   const sliderImgArray = [
@@ -289,6 +295,12 @@ export default function Home() {
       setNftNameSearchArray(nftNameFilterArray);
     }
   };
+
+  const [searchValue, setSearchValue] = useState('');
+
+const handleSearch = (nfts) => {
+  return nfts.filter(nft => nft.name.toLowerCase().includes(searchValue.toLowerCase()));
+};
 
   useEffect(() => {
     loadHardHatResell();
@@ -1775,20 +1787,21 @@ export default function Home() {
               </div>
 
               <div style={{ textAlign: 'center' }}>
-  <select
-    style={{
-      display: 'inline-block',
-      background: 'black',
-      padding: '10px 30px',
-      borderRadius: '10px',
-      marginRight: '3%'
-    }}
-    onChange={e => networkCollectionSelect(e.target.value)}
-  >
-    <option>Collections</option>
-    <option>Community NFTs</option>
-  </select>
+  {/* <select */}
+    {/* style={{ */}
+      {/* display: 'inline-block', */}
+      {/* background: 'black', */}
+      {/* padding: '10px 30px', */}
+      {/* borderRadius: '10px', */}
+      {/* marginRight: '3%' */}
+    {/* }} */}
+    {/* onChange={e => setSearchValue(e.target.value)} */}
+  {/* > */}
+    {/* <option>Collections</option> */}
+    {/* <option>Community NFTs</option> */}
+  {/* </select> */}
 </div>
+
 
               
         <Container sm>
@@ -2105,7 +2118,7 @@ export default function Home() {
                   ) : (
                     <>
                       {hhnfts &&
-                        hhnfts.map((nft, i) => (
+                        handleSearch(hhnfts).map((nft, i) => (
                           <Grid xs={12} sm={4} md={3} key={i}>
                             <BuyCard
                               nft={nft}
@@ -2119,6 +2132,7 @@ export default function Home() {
                             />
                           </Grid>
                         ))}
+
                     </>
                   )}
                 </>
@@ -2585,8 +2599,8 @@ export default function Home() {
                 )}
               </Grid.Container>
             </Container>
-          </>
-        )}
+          </> 
+        )} 
         <LoadingPopup visible={visible} setVisible={setVisible} />
 
         {/* */}
